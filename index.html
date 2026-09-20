@@ -147,10 +147,10 @@
         <div class="nav-container">
             <div class="logo">Tomasz Ślęczkowski // Electronics Engineer</div>
             <nav>
-                <button onclick="openTab('o-mnie')" id="btn-o-mnie" class="active">O mnie</button>
-                <button onclick="openTab('projekty')" id="btn-projekty">Projekty</button>
-                <button onclick="openTab('naprawy')" id="btn-naprawy">Naprawy</button>
-                <button onclick="openTab('kontakt')" id="btn-kontakt">Kontakt</button>
+                <button onclick="openTab('o-mnie', this)" class="active">O mnie</button>
+                <button onclick="openTab('projekty', this)">Projekty</button>
+                <button onclick="openTab('naprawy', this)">Naprawy</button>
+                <button onclick="openTab('kontakt', this)">Kontakt</button>
             </nav>
         </div>
     </header>
@@ -195,7 +195,7 @@
                         
                         <details>
                             <summary>📐 Hardware & PCB</summary>
-                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prążku spoczynkowym (I_q = 1µA).</p>
+                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
                         </details>
 
                         <details>
@@ -225,7 +225,7 @@
                     <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
                 </div>
 
-                <!-- NOWY PROJEKT 3 -->
+                <!-- PROJEKT 3 -->
                 <div class="card">
                     <div class="card-body">
                         <h3>Wielokanałowy Rejestrator Danych (STM32)</h3>
