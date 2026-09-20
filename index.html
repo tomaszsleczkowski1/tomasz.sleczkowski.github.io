@@ -11,6 +11,8 @@
             --accent-color: #38bdf8;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --header-bg: #020617;
+            --border-color: #334155;
         }
 
         body {
@@ -23,14 +25,14 @@
         }
 
         header {
-            background-color: #020617;
+            background-color: var(--header-bg);
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             box-sizing: border-box;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-container {
@@ -49,76 +51,126 @@
             color: var(--accent-color);
         }
 
-        nav button {
-            background: none;
-            border: none;
+        /* MECHANIZM ZAKŁADEK BEZ JAVASCRIPT (CSS ONLY) */
+        nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Ukrywamy domyślne inputy radio */
+        input[type="radio"].tab-switch {
+            display: none;
+        }
+
+        /* Stylizujemy labele, aby wyglądały jak profesjonalne przyciski */
+        .tab-label {
             color: var(--text-main);
             font-size: 1rem;
             cursor: pointer;
-            margin-left: 1rem;
             padding: 0.5rem 1rem;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
             border-bottom: 2px solid transparent;
+            user-select: none;
         }
 
-        nav button:hover, nav button.active {
+        .tab-label:hover {
             color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
         }
 
         main {
             max-width: 1100px;
-            margin: 120px auto 4rem auto;
+            margin: 140px auto 4rem auto;
             padding: 0 2rem;
+            position: relative;
         }
 
+        /* Ukrywanie i pokazywanie sekcji w zależności od zaznaczonego inputa */
         .tab-content {
             display: none;
+            animation: fadeIn 0.4s ease forwards;
         }
 
-        .tab-content.active {
+        #tab1:checked ~ main #content-o-mnie,
+        #tab2:checked ~ main #content-projekty,
+        #tab3:checked ~ main #content-naprawy,
+        #tab4:checked ~ main #content-kontakt {
             display: block;
         }
 
-        .hero {
-            text-align: center;
-            padding: 3rem 0;
+        /* Podświetlanie aktywnego "przycisku" w menu */
+        #tab1:checked ~ header .tab-label[for="tab1"],
+        #tab2:checked ~ header .tab-label[for="tab2"],
+        #tab3:checked ~ header .tab-label[for="tab3"],
+        #tab4:checked ~ header .tab-label[for="tab4"] {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            font-weight: 600;
         }
 
-        h1 { color: var(--accent-color); }
+        /* ANIMACJA PŁYNNEGO POJAWIANIA SIĘ ZAKŁADEK */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SEKCJE I ELEMENTY WIZUALNE */
+        .hero {
+            text-align: center;
+            padding: 2.5rem 0;
+        }
+
+        .hero h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
         
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.3rem;
         }
 
         .card-body {
             flex-grow: 1;
         }
 
+        /* AKORDIONY DETAILS */
         details {
-            background: #0f172a;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            margin-top: 0.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
             border-left: 3px solid var(--accent-color);
+            transition: background 0.3s;
+        }
+
+        details[open] {
+            background: rgba(15, 23, 42, 0.9);
         }
 
         summary {
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
+            outline: none;
         }
 
         code {
@@ -126,7 +178,8 @@
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
             color: #f43f5e;
-            font-family: monospace;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
         }
 
         .btn-link {
@@ -134,48 +187,79 @@
             margin-top: 1.5rem;
             background-color: var(--accent-color);
             color: #0f172a;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: bold;
             text-align: center;
+            transition: opacity 0.2s;
+        }
+
+        .btn-link:hover {
+            opacity: 0.9;
         }
         
+        .contact-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 2rem auto 0 auto;
+            text-align: center;
+        }
+
         .contact-info {
-            font-size: 1.1rem;
-            margin: 1rem 0;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+            display: inline-block;
         }
         
         .contact-info a {
             color: var(--accent-color);
             text-decoration: none;
+            font-weight: 600;
         }
         
         .contact-info a:hover {
             text-decoration: underline;
         }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            .nav-container { flex-direction: column; text-align: center; }
+            main { margin-top: 180px; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Ukryte przełączniki radiowe sterujące widokiem stron -->
+    <input type="radio" name="portfolio-tabs" id="tab1" class="tab-switch" checked>
+    <input type="radio" name="portfolio-tabs" id="tab2" class="tab-switch">
+    <input type="radio" name="portfolio-tabs" id="tab3" class="tab-switch">
+    <input type="radio" name="portfolio-tabs" id="tab4" class="tab-switch">
 
     <header>
         <div class="nav-container">
             <div class="logo">Tomasz Ślęczkowski // Electronics Engineer</div>
             <nav>
-                <button onclick="openTab('o-mnie', this)" class="active">O mnie</button>
-                <button onclick="openTab('projekty', this)">Projekty</button>
-                <button onclick="openTab('naprawy', this)">Naprawy</button>
-                <button onclick="openTab('kontakt', this)">Kontakt</button>
+                <!-- Labele powiązane z odpowiednimi inputami za pomocą atrybutu 'for' -->
+                <label for="tab1" class="tab-label">O mnie</label>
+                <label for="tab2" class="tab-label">Projekty</label>
+                <label for="tab3" class="tab-label">Naprawy</label>
+                <label for="tab4" class="tab-label">Kontakt</label>
             </nav>
         </div>
     </header>
 
     <main>
         <!-- ZAKŁADKA: O MNIE -->
-        <div id="o-mnie" class="tab-content active">
+        <div id="content-o-mnie" class="tab-content">
             <div class="hero">
                 <h1>Cześć, nazywam się Tomasz Ślęczkowski</h1>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1.1rem;">
                     Jestem inżynierem elektronikiem. Zajmuję się projektowaniem własnych urządzeń i systemów wbudowanych (Embedded) oraz zaawansowaną diagnostyką i naprawą sprzętu elektronicznego.
                 </p>
             </div>
@@ -183,7 +267,7 @@
             <div class="grid">
                 <div class="card">
                     <h3>Hardware / EDA</h3>
-                    <p>Projektowanie wielowarstwowych obwodów drukonwanych, dobór komponentów, tworzenie schematów ideowych (np. KiCad, Altium Designer).</p>
+                    <p>Projektowanie wielowarstwowych obwodów drukowanych, dobór komponentów, tworzenie schematów ideowych (np. KiCad, Altium Designer).</p>
                 </div>
                 <div class="card">
                     <h3>Firmware / Embedded</h3>
@@ -197,7 +281,7 @@
         </div>
 
         <!-- ZAKŁADKA: PROJEKTY -->
-        <div id="projekty" class="tab-content">
+        <div id="content-projekty" class="tab-content">
             <h2>Projekty Własne i Konstruktorskie</h2>
             <p style="color: var(--text-muted)">Moje autorskie układy elektroniczne stworzone od podstaw – od schematu, przez projekt PCB, do oprogramowania.</p>
             <div class="grid">
@@ -210,67 +294,7 @@
                         
                         <details>
                             <summary>📐 Hardware & PCB</summary>
-                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prążku spoczynkowym (I_q = 1µA).</p>
+                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
                         </details>
 
                         <details>
-                            <summary>💻 Firmware (Kod)</summary>
-                            <p>Napisany w C. Wykorzystuje peryferia <code>I2C</code> do odczytu sensora BME280 oraz obsługuje głębokie uśpienie układu.</p>
-                        </details>
-                    </div>
-                    <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
-                </div>
-
-                <!-- PROJEKT 2 -->
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Sterownik Silnika BLDC (STM32)</h3>
-                        <p style="color: var(--text-muted)">Autorski moduł wykonawczy do precyzyjnego sterowania silnikiem bezszczotkowym.</p>
-                        
-                        <details>
-                            <summary>📐 Hardware & PCB</summary>
-                            <p>Projekt z tranzystorami MOSFET dużej mocy. Zaimplementowano izolację galwaniczną części cyfrowej od prądowej.</p>
-                        </details>
-
-                        <details>
-                            <summary>💻 Firmware (Kod)</summary>
-                            <p>Generowanie sygnałów komplementarnych <code>PWM</code> z czasem martwym (Deadtime) na timerach zaawansowanych STM32.</p>
-                        </details>
-                    </div>
-                    <a href="#" class="btn-link">Zobacz szczegóły projektu</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- ZAKŁADKA: NAPRAWY -->
-        <div id="naprawy" class="tab-content">
-            <h2>Diagnostyka i Naprawa Aparatury</h2>
-            <p style="color: var(--text-muted)">Przykłady serwisowanych urządzeń, lokalizacja usterek i proces przywracania sprzętu do sprawności.</p>
-            <div class="grid">
-                <div class="card">
-                    <h3>Naprawa Oscyloskopu Cyfrowego</h3>
-                    <p>Diagnoza uszkodzenia w sekcji zasilacza impulsowego. Wymiana spuchniętych kondensatorów i uszkodzonego klucza przetwornicy.</p>
-                </div>
-                <div class="card">
-                    <h3>Rebuilding laptopa po zalaniu</h3>
-                    <p>Czyszczenie w myjce ultradźwiękowej, odbudowa skorodowanych ścieżek oraz wymiana kontrolera KBC.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- ZAKŁADKA: KONTAKT -->
-        <div id="kontakt" class="tab-content">
-            <h2>Skontaktuj się ze mną</h2>
-            <p>Jeśli jesteś zainteresowany współpracą inżynierską, napisz lub zadzwoń:</p>
-            <div class="contact-info">
-                <p>📧 Email: <a href="mailto:tomasz@sleczkowski.pl">tomasz@sleczkowski.pl</a></p>
-                <p>📱 Telefon: <a href="tel:+48123456789">+48 123 456 789</a></p>
-            </div>
-        </div>
-    </main>
-
-    <!-- SKRYPT JAVASCRIPT DO OBSŁUGI ZAKŁADEK -->
-    <script>
-        function openTab(tabId, clickedButton) {
-            // Ukryj całą zawartość zakładek
-            const contents = document.querySelectorAll('.tab-content');
