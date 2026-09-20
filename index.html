@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inżynier Elektronik - Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #020617;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid #334155;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 1.5rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+
+        nav button:hover, nav button.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 100px auto 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        h1 { color: var(--accent-color); }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+        }
+
+        details {
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        code {
+            background: #020617;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #f43f5e;
+            font-family: monospace;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: var(--accent-color);
+            color: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Jan Kowalski // Electronics Engineer</div>
+            <nav>
+                <button onclick="openTab('o-mnie')" id="btn-o-mnie" class="active">O mnie</button>
+                <button onclick="openTab('projekty')" id="btn-projekty">Projekty</button>
+                <button onclick="openTab('kontakt')" id="btn-kontakt">Kontakt</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ZAKŁADKA: O MNIE -->
+        <div id="o-mnie" class="tab-content active">
+            <div class="hero">
+                <h1>Cześć, projektuję elektronikę i systemy wbudowane</h1>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                    Zajmuję się tworzeniem urządzeń od schematu ideowego, przez projekt PCB, aż po pisanie firmware dla mikrokontrolerów.
+                </p>
+            </div>
+            <h2>Moje Stack Technologiczny</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Hardware / EDA</h3>
+                    <p>KiCad, Altium Designer, Symulacje SPICE, Dobór komponentów SMPS.</p>
+                </div>
+                <div class="card">
+                    <h3>Firmware / Embedded</h3>
+                    <p>Język C/C++, STM32 (HAL), ESP32 (ESP-IDF), RTOS, komunikacja I2C/SPI/UART.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA: PROJEKTY -->
+        <div id="projekty" class="tab-content">
+            <h2>Wybrane Projekty Inżynierskie</h2>
+            <div class="grid">
+                
+                <!-- PROJEKT 1 -->
+                <div class="card">
+                    <h3>1. Bezprzewodowy Węzeł IoT (ESP32)</h3>
+                    <p style="color: var(--text-muted)">Urządzenie pomiarowe zasilane bateryjnie z optymalizacją poboru prądu w trybie Deep Sleep.</p>
+                    
+                    <details>
+                        <summary>📐 Hardware & PCB</summary>
+                        <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
+                        <p><i>[Tutaj możesz wstawić link do zdjęcia: &lt;img src="twoje_pcb.jpg"&gt;]</i></p>
+                    </details>
+
+                    <details>
+                        <summary>💻 Firmware (Kod)</summary>
+                        <p>Napisany w C. Wykorzystuje peryferia <code>I2C</code> do odczytu sensora BME280 oraz obsługuje głębokie uśpienie układu.</p>
+                    </details>
+                    
+                    <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
+                </div>
+
+                <!-- PROJEKT 2 -->
+                <div class="card">
+                    <h3>2. Sterownik Silnika BLDC (STM32)</h3>
+                    <p style="color: var(--text-muted)">Autorski moduł wykonawczy do precyzyjnego sterowania silnikiem bezszczotkowym.</p>
+                    
+                    <details>
+                        <summary>📐 Hardware & PCB</summary>
+                        <p>Projekt z tranzystorami MOSFET dużej mocy. Zaimplementowano izolację galwaniczną części cyfrowej od prądowej.</p>
+                    </details>
+
+                    <details>
+                        <summary>💻 Firmware (Kod)</summary>
+                        <p>Generowanie sygnałów komplementarnych <code>PWM</code> z czasem martwym (Deadtime) na timerach zaawansowanych STM32.</p>
+                    </details>
+                    
+                    <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA: KONTAKT -->
+        <div id="kontakt" class="tab-content">
+            <h2>Skontaktuj się ze mną</h2>
+            <div class="card" style="max-width: 500px; margin: 2rem 0;">
+                <p>Jestem otwarty na projekty rekrutacyjne oraz zlecenia freelancerskie.</p>
+                <p>📧 Email: <a href="mailto:twoj.email@example.com" style="color: var(--accent-color);">twoj.email@example.com</a></p>
+                <p>💼 LinkedIn: <a href="https://linkedin.com" style="color: var(--accent-color);">twój-profil</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openTab(tabId) {
+            // Ukryj wszystkie zakładki
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Dezaktywuj wszystkie przyciski
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Pokaż wybraną zakładkę i aktywuj przycisk
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
