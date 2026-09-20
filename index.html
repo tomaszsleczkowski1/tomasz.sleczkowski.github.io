@@ -58,6 +58,7 @@
             margin-left: 1rem;
             padding: 0.5rem 1rem;
             transition: color 0.3s;
+            border-bottom: 2px solid transparent;
         }
 
         nav button:hover, nav button.active {
@@ -139,6 +140,20 @@
             font-weight: bold;
             text-align: center;
         }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+        
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -195,7 +210,7 @@
                         
                         <details>
                             <summary>📐 Hardware & PCB</summary>
-                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
+                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prążku spoczynkowym (I_q = 1µA).</p>
                         </details>
 
                         <details>
@@ -229,16 +244,16 @@
                 <div class="card">
                     <div class="card-body">
                         <h3>Wielokanałowy Rejestrator Danych (STM32)</h3>
-                        <p style="color: var(--text-muted)">Przemysłowy logger zapisujący parametry z zewnętrznych czujników na kartę microSD w czasie rzeczywistym.</p>
+                        <p style="color: var(--text-muted)">System akwizycji danych z czujników analogowych z zapisem na kartę SD.</p>
                         
                         <details>
                             <summary>📐 Hardware & PCB</summary>
-                            <p>Układ zawiera zintegrowany zegar czasu rzeczywistego (RTC) z podtrzymaniem bateryjnym CR1220, zabezpieczenia ESD na liniach wejściowych oraz dedykowany slot SD po magistrali SPI.</p>
+                            <p>Układ wyposażony w zewnętrzny, precyzyjny przetwornik ADC oraz bufory wejściowe na wzmacniaczach operacyjnych.</p>
                         </details>
 
                         <details>
                             <summary>💻 Firmware (Kod)</summary>
-                            <p>Wykorzystanie biblioteki FatFS do obsługi systemu plików FAT32 na karcie pamięci. Implementacja DMA dla szybkiego zapisu danych bez obciążania rdzenia CPU.</p>
+                            <p>Wykorzystanie systemu plików FATFS do obsługi <code>SPI</code> i zapisu plików na karcie SD w czasie rzeczywistym.</p>
                         </details>
                     </div>
                     <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
@@ -249,13 +264,10 @@
 
         <!-- ZAKŁADKA: NAPRAWY -->
         <div id="naprawy" class="tab-content">
-            <h2>Serwis i Diagnostyka Elektroniki</h2>
-            <p style="color: var(--text-muted)">Przykłady udanych, zaawansowanych napraw urządzeń przemysłowych, konsumenckich lub automotive.</p>
+            <h2>Diagnostyka i Naprawa Elektroniki</h2>
+            <p style="color: var(--text-muted)">Przykłady serwisowania i przywracania do sprawności zaawansowanego sprzętu elektronicznego.</p>
             <div class="grid">
-                
-                <!-- NAPRAWA 1 -->
                 <div class="card">
-                    <h3>Diagnostyka i naprawa przetwornicy impulsowej</h3>
-                    <p style="color: var(--text-muted)">Urządzenie: Zasilacz laboratoryjny dużej mocy.</p>
-                    <details>
-                        <summary>🔍 Opis usterki i lokalizacja</summary>
+                    <div class="card-body">
+                        <h3>Naprawa płyty głównej laptopa</h3>
+                        <p style="color: var(--text-muted)">Diagnostyka zwarcia w głównej linii zasilania (19V).</p>
