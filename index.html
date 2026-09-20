@@ -82,6 +82,7 @@
             position: relative;
         }
 
+        /* UKRYWANIE I POKAZYWANIE ZAKŁADEK - POPRAWIONE */
         .tab-content {
             display: none;
             animation: fadeIn 0.4s ease forwards;
@@ -91,7 +92,7 @@
         #tab2:checked ~ main #content-projekty,
         #tab3:checked ~ main #content-naprawy,
         #tab4:checked ~ main #content-kontakt {
-            display: block;
+            display: block !important;
         }
 
         #tab1:checked ~ header .tab-label[for="tab1"],
@@ -209,7 +210,7 @@
             opacity: 0.9;
         }
         
-        .contact-container {
+        .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -260,6 +261,7 @@
 </head>
 <body>
 
+    <!-- Główny mechanizm przełączania zakładkami (musi być przed header i main) -->
     <input type="radio" name="portfolio-tabs" id="tab1" class="tab-switch" checked>
     <input type="radio" name="portfolio-tabs" id="tab2" class="tab-switch">
     <input type="radio" name="portfolio-tabs" id="tab3" class="tab-switch">
@@ -315,4 +317,3 @@
                         <h3>Bezprzewodowy Węzeł IoT (ESP32)</h3>
                         <div class="tech-tags">
                             <span class="tag">ESP32</span><span class="tag">KiCad</span><span class="tag">C</span><span class="tag">I2C</span><span class="tag">Low-Power</span>
-                        </div>
