@@ -98,6 +98,13 @@
             border-radius: 8px;
             padding: 1.5rem;
             border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body {
+            flex-grow: 1;
         }
 
         details {
@@ -123,13 +130,14 @@
 
         .btn-link {
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             background-color: var(--accent-color);
             color: #0f172a;
             padding: 0.5rem 1rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
@@ -181,37 +189,58 @@
                 
                 <!-- PROJEKT 1 -->
                 <div class="card">
-                    <h3>Bezprzewodowy Węzeł IoT (ESP32)</h3>
-                    <p style="color: var(--text-muted)">Urządzenie pomiarowe zasilane bateryjnie z optymalizacją poboru prądu w trybie Deep Sleep.</p>
-                    
-                    <details>
-                        <summary>📐 Hardware & PCB</summary>
-                        <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
-                    </details>
+                    <div class="card-body">
+                        <h3>Bezprzewodowy Węzeł IoT (ESP32)</h3>
+                        <p style="color: var(--text-muted)">Urządzenie pomiarowe zasilane bateryjnie z optymalizacją poboru prądu w trybie Deep Sleep.</p>
+                        
+                        <details>
+                            <summary>📐 Hardware & PCB</summary>
+                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prążku spoczynkowym (I_q = 1µA).</p>
+                        </details>
 
-                    <details>
-                        <summary>💻 Firmware (Kod)</summary>
-                        <p>Napisany w C. Wykorzystuje peryferia <code>I2C</code> do odczytu sensora BME280 oraz obsługuje głębokie uśpienie układu.</p>
-                    </details>
-                    
+                        <details>
+                            <summary>💻 Firmware (Kod)</summary>
+                            <p>Napisany w C. Wykorzystuje peryferia <code>I2C</code> do odczytu sensora BME280 oraz obsługuje głębokie uśpienie układu.</p>
+                        </details>
+                    </div>
                     <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
                 </div>
 
                 <!-- PROJEKT 2 -->
                 <div class="card">
-                    <h3>Sterownik Silnika BLDC (STM32)</h3>
-                    <p style="color: var(--text-muted)">Autorski moduł wykonawczy do precyzyjnego sterowania silnikiem bezszczotkowym.</p>
-                    
-                    <details>
-                        <summary>📐 Hardware & PCB</summary>
-                        <p>Projekt z tranzystorami MOSFET dużej mocy. Zaimplementowano izolację galwaniczną części cyfrowej od prądowej.</p>
-                    </details>
+                    <div class="card-body">
+                        <h3>Sterownik Silnika BLDC (STM32)</h3>
+                        <p style="color: var(--text-muted)">Autorski moduł wykonawczy do precyzyjnego sterowania silnikiem bezszczotkowym.</p>
+                        
+                        <details>
+                            <summary>📐 Hardware & PCB</summary>
+                            <p>Projekt z tranzystorami MOSFET dużej mocy. Zaimplementowano izolację galwaniczną części cyfrowej od prądowej.</p>
+                        </details>
 
-                    <details>
-                        <summary>💻 Firmware (Kod)</summary>
-                        <p>Generowanie sygnałów komplementarnych <code>PWM</code> z czasem martwym (Deadtime) na timerach zaawansowanych STM32.</p>
-                    </details>
-                    
+                        <details>
+                            <summary>💻 Firmware (Kod)</summary>
+                            <p>Generowanie sygnałów komplementarnych <code>PWM</code> z czasem martwym (Deadtime) na timerach zaawansowanych STM32.</p>
+                        </details>
+                    </div>
+                    <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
+                </div>
+
+                <!-- NOWY PROJEKT 3 -->
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Wielokanałowy Rejestrator Danych (STM32)</h3>
+                        <p style="color: var(--text-muted)">Przemysłowy logger zapisujący parametry z zewnętrznych czujników na kartę microSD w czasie rzeczywistym.</p>
+                        
+                        <details>
+                            <summary>📐 Hardware & PCB</summary>
+                            <p>Układ zawiera zintegrowany zegar czasu rzeczywistego (RTC) z podtrzymaniem bateryjnym CR1220, zabezpieczenia ESD na liniach wejściowych oraz dedykowany slot SD po magistrali SPI.</p>
+                        </details>
+
+                        <details>
+                            <summary>💻 Firmware (Kod)</summary>
+                            <p>Wykorzystanie biblioteki FatFS do obsługi systemu plików FAT32 na karcie pamięci. Implementacja DMA dla szybkiego zapisu danych bez obciążania rdzenia CPU.</p>
+                        </details>
+                    </div>
                     <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
                 </div>
 
@@ -230,30 +259,3 @@
                     <p style="color: var(--text-muted)">Urządzenie: Zasilacz laboratoryjny dużej mocy.</p>
                     <details>
                         <summary>🔍 Opis usterki i lokalizacja</summary>
-                        <p>Brak napięcia na wyjściu. Po otwarciu obudowy i wstępnych pomiarach zidentyfikowano zwarcie w kluczu tranzystorowym MOSFET po stronie pierwotnej oraz uszkodzony kontroler PWM.</p>
-                    </details>
-                    <details>
-                        <summary>🛠️ Wykonane działania</summary>
-                        <p>Wymiana uszkodzonych elementów półprzewodnikowych, regeneracja przepalonych ścieżek oraz testy stabilności pod obciążeniem elektronicznym. Układ przywrócony do pełnej sprawności.</p>
-                    </details>
-                </div>
-
-                <!-- NAPRAWA 2 -->
-                <div class="card">
-                    <h3>Wymiana układu BGA w elektronice samochodowej</h3>
-                    <p style="color: var(--text-muted)">Urządzenie: Sterownik silnika ECU.</p>
-                    <details>
-                        <summary>🔍 Opis usterki i lokalizacja</summary>
-                        <p>Brak komunikacji ze sterownikiem przez magistralę CAN przy wyższych temperaturach. Diagnoza wskazała na zimne luty pod procesorem w obudowie BGA.</p>
-                    </details>
-                    <details>
-                        <summary>🛠️ Wykonane działania</summary>
-                        <p>Wykonano profesjonalny proces reballingu układu (wylutowanie, oczyszczenie padów, nałożenie nowych kulek ołowiowych i ponowne wlutowanie przy użyciu profilu temperatury).</p>
-                    </details>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ZAKŁADKA: KONTAKT -->
-        <div id="kontakt" class="tab-content">
