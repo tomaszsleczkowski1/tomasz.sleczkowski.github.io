@@ -1,514 +1,511 @@
 # ESP32 3.1 Audio System
 
-> **Status:** 🟡 In development
-> **Project type:** Personal engineering project
-> **Domain:** Embedded / Electronics / Digital Audio / Hardware
-> **Platform:** ESP32
-> **Author:** Tomasz Ślęczkowski
-> **Started:** 2026-09-20
+> **Status projektu:** 🟡 W trakcie realizacji
+> **Typ projektu:** Projekt własny / Embedded / Elektronika / Audio
+> **Autor:** Tomasz Ślęczkowski
+> **Data rozpoczęcia:** 20.09.2026
 
 ---
 
-## 1. Project Overview
+# 1. Opis projektu
 
-### 1.1 Description
+## 1.1 Cel projektu
 
-ESP32 3.1 Audio System is a personal engineering project focused on developing a custom 3.1 audio device based on the ESP32 platform.
+Celem projektu jest zaprojektowanie i zbudowanie własnego systemu audio **3.1** opartego na platformie **ESP32**.
 
-The system is intended to combine multiple audio sources, wireless connectivity, digital audio processing and multi-channel amplification into a single integrated device.
+Urządzenie ma łączyć funkcje bezprzewodowego odtwarzania muzyki, cyfrowego przetwarzania sygnału audio oraz wielokanałowego wzmacniacza audio.
 
-The initial target functionality includes:
+Docelowo system ma umożliwiać:
 
-* Spotify Connect
-* Bluetooth Audio
-* Wi-Fi connectivity
-* 3.1-channel audio output
-* Left channel
-* Right channel
-* Subwoofer channel
-* Digital audio processing
-* Multi-channel amplification
-* Configuration and control from the embedded system
+* odtwarzanie muzyki przez **Spotify Connect**,
+* odtwarzanie muzyki przez **Bluetooth**,
+* komunikację przez **Wi-Fi**,
+* obsługę konfiguracji **3.1**,
+* niezależną obsługę kanału lewego,
+* niezależną obsługę kanału prawego,
+* obsługę kanału subwoofera,
+* cyfrowe przetwarzanie sygnału audio,
+* podział pasma dla subwoofera,
+* współpracę z wielokanałowym wzmacniaczem,
+* stworzenie własnego hardware'u oraz firmware'u.
 
-The project is being developed incrementally, starting from requirements and architecture and progressing toward a functional hardware prototype.
-
----
-
-# 2. Project Goals
-
-## 2.1 Primary Goal
-
-Develop a functional 3.1 audio system integrating wireless audio sources with a custom embedded hardware platform.
-
-## 2.2 Engineering Goals
-
-The project is also intended to provide practical experience in:
-
-* Embedded systems
-* ESP32 development
-* Digital audio
-* Audio interfaces
-* Hardware architecture
-* PCB design
-* Power supply design
-* Firmware development
-* Wireless communication
-* Hardware/software integration
-* Debugging and measurement
-* Engineering documentation
+Projekt będzie rozwijany etapami — od analizy wymagań i architektury, przez prototyp, aż po działające urządzenie i jego końcową obudowę.
 
 ---
 
-# 3. Target Functionality
+# 2. Dlaczego powstaje ten projekt?
 
-| Feature         | Target   | Status |
-| --------------- | -------- | ------ |
-| ESP32 platform  | Required | 🟡     |
-| Wi-Fi           | Required | 🟡     |
-| Spotify Connect | Required | 🟡     |
-| Bluetooth Audio | Required | 🟡     |
-| Left channel    | Required | 🟡     |
-| Right channel   | Required | 🟡     |
-| Subwoofer       | Required | 🟡     |
-| Digital audio   | Required | 🟡     |
-| DAC / CODEC     | TBD      | ⚪      |
-| DSP             | TBD      | ⚪      |
-| Amplifier       | TBD      | ⚪      |
-| Power supply    | TBD      | ⚪      |
-| Custom PCB      | Planned  | ⚪      |
-| Enclosure       | Planned  | ⚪      |
+Projekt jest realizowany jako własne przedsięwzięcie inżynierskie mające na celu praktyczne połączenie wiedzy z zakresu:
 
-### Status legend
+* elektroniki,
+* systemów embedded,
+* mikrokontrolerów,
+* projektowania PCB,
+* projektowania zasilania,
+* komunikacji bezprzewodowej,
+* cyfrowego przetwarzania sygnałów,
+* audio,
+* programowania C/C++,
+* diagnostyki i pomiarów.
 
-* 🟢 Completed
-* 🟡 In progress
-* ⚪ Planned / TBD
-* 🔴 Problem / blocked
+Projekt będzie dokumentowany od samego początku, włącznie z błędami, zmianami koncepcji oraz decyzjami projektowymi.
 
 ---
 
-# 4. System Requirements
+# 3. Założenia funkcjonalne
 
-This section will contain measurable technical requirements.
+| Funkcja              | Założenie          | Status |
+| -------------------- | ------------------ | ------ |
+| Mikrokontroler ESP32 | Tak                | 🟡     |
+| Wi-Fi                | Tak                | 🟡     |
+| Spotify Connect      | Tak                | 🟡     |
+| Bluetooth Audio      | Tak                | 🟡     |
+| System 3.1           | Tak                | 🟡     |
+| Kanał lewy           | Tak                | 🟡     |
+| Kanał prawy          | Tak                | 🟡     |
+| Kanał subwoofera     | Tak                | 🟡     |
+| Cyfrowe audio        | Tak                | 🟡     |
+| DAC / CODEC          | Do wyboru          | ⚪      |
+| DSP                  | Do ustalenia       | ⚪      |
+| Wzmacniacz           | Do wyboru          | ⚪      |
+| Zasilacz             | Do zaprojektowania | ⚪      |
+| Dedykowana PCB       | Planowana          | ⚪      |
+| Obudowa              | Planowana          | ⚪      |
 
-The values should be updated as the design progresses.
+### Oznaczenia
+
+* 🟢 Zakończone
+* 🟡 W trakcie
+* ⚪ Planowane / do ustalenia
+* 🔴 Problem / zablokowane
+
+---
+
+# 4. Wymagania techniczne
+
+Ta sekcja będzie stopniowo uzupełniana w miarę podejmowania decyzji projektowych.
 
 ## 4.1 Audio
 
-| Parameter          | Requirement | Actual | Status |
-| ------------------ | ----------- | ------ | ------ |
-| Configuration      | 3.1         | TBD    | 🟡     |
-| Sample rate        | TBD         | TBD    | ⚪      |
-| Bit depth          | TBD         | TBD    | ⚪      |
-| Frequency response | TBD         | TBD    | ⚪      |
-| THD+N              | TBD         | TBD    | ⚪      |
-| SNR                | TBD         | TBD    | ⚪      |
-| Output power L/R   | TBD         | TBD    | ⚪      |
-| Output power SUB   | TBD         | TBD    | ⚪      |
+| Parametr                   | Wymaganie | Wartość rzeczywista | Status |
+| -------------------------- | --------- | ------------------- | ------ |
+| Konfiguracja               | 3.1       | TBD                 | 🟡     |
+| Częstotliwość próbkowania  | TBD       | TBD                 | ⚪      |
+| Rozdzielczość              | TBD       | TBD                 | ⚪      |
+| Pasmo przenoszenia         | TBD       | TBD                 | ⚪      |
+| SNR                        | TBD       | TBD                 | ⚪      |
+| THD+N                      | TBD       | TBD                 | ⚪      |
+| Moc kanału L               | TBD       | TBD                 | ⚪      |
+| Moc kanału R               | TBD       | TBD                 | ⚪      |
+| Moc kanału SUB             | TBD       | TBD                 | ⚪      |
+| Częstotliwość podziału SUB | TBD       | TBD                 | ⚪      |
 
 ---
 
-## 4.2 Connectivity
+# 5. Architektura systemu
 
-| Interface       | Requirement           | Status |
-| --------------- | --------------------- | ------ |
-| Wi-Fi           | Required              | 🟡     |
-| Bluetooth       | Required              | 🟡     |
-| Spotify Connect | Required              | 🟡     |
-| USB             | TBD                   | ⚪      |
-| Ethernet        | Not planned initially | ⚪      |
-
----
-
-## 4.3 Power
-
-| Parameter            | Requirement | Actual | Status |
-| -------------------- | ----------- | ------ | ------ |
-| Input voltage        | TBD         | TBD    | ⚪      |
-| Maximum system power | TBD         | TBD    | ⚪      |
-| Standby power        | TBD         | TBD    | ⚪      |
-| Logic supply         | TBD         | TBD    | ⚪      |
-| Audio supply         | TBD         | TBD    | ⚪      |
-
----
-
-# 5. Initial System Architecture
-
-The initial concept is based around the ESP32 as the central control and connectivity platform.
+Pierwsza koncepcja systemu:
 
 ```text
-                        ┌───────────────────────┐
-                        │         ESP32         │
-                        │                       │
-                        │       Wi-Fi           │
-                        │   Spotify Connect     │
-                        │   Bluetooth Audio     │
-                        │                       │
-                        └───────────┬───────────┘
-                                    │
-                                    │ Digital Audio
-                                    │
-                                    ▼
-                        ┌───────────────────────┐
-                        │    AUDIO PROCESSING   │
-                        │                       │
-                        │      DAC / CODEC      │
-                        │         DSP           │
-                        │          TBD          │
-                        └───────────┬───────────┘
-                                    │
-                         ┌──────────┼──────────┐
-                         │          │          │
-                         ▼          ▼          ▼
-                        LEFT       RIGHT      SUB
-                         │          │          │
-                         ▼          ▼          ▼
-                       AMP L      AMP R      AMP SUB
-                         │          │          │
-                         ▼          ▼          ▼
-                     Speaker L   Speaker R   Subwoofer
+                     ┌─────────────────────┐
+                     │        ESP32        │
+                     │                     │
+                     │       Wi-Fi         │
+                     │   Spotify Connect   │
+                     │   Bluetooth Audio   │
+                     │                     │
+                     └──────────┬──────────┘
+                                │
+                                │ Cyfrowy sygnał audio
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │  PRZETWARZANIE AUDIO│
+                     │                     │
+                     │     DAC / CODEC     │
+                     │        DSP          │
+                     │        TBD          │
+                     └──────────┬──────────┘
+                                │
+                    ┌───────────┼───────────┐
+                    │           │           │
+                    ▼           ▼           ▼
+                 KANAŁ L     KANAŁ R      SUB
+                    │           │           │
+                    ▼           ▼           ▼
+                 AMP L        AMP R      AMP SUB
+                    │           │           │
+                    ▼           ▼           ▼
+               GŁOŚNIK L    GŁOŚNIK R   SUBWOOFER
 ```
 
-This architecture is preliminary and will change as technical requirements become more precise.
+> **Uwaga:** Jest to wstępna architektura. Poszczególne elementy zostaną dobrane na podstawie wymagań technicznych.
 
 ---
 
-# 6. Architecture Questions
+# 6. Pytania projektowe
 
-Before committing to the final hardware design, the following questions need to be answered:
+Przed rozpoczęciem projektowania finalnego hardware'u należy odpowiedzieć na następujące pytania:
 
-* Which ESP32 variant is appropriate?
-* Which ESP32 audio interfaces are required?
-* How will Spotify Connect be implemented?
-* How will Bluetooth Audio be implemented?
-* Is simultaneous Wi-Fi and Bluetooth operation required?
-* What audio format will be used internally?
-* Which digital audio interface will be used?
-* Is an external DAC required?
-* Is an external CODEC required?
-* Is DSP processing required?
-* Where should crossover processing take place?
-* How will the subwoofer signal be generated?
-* What amplifier topology should be used?
-* What output power is required?
-* What speaker impedance will be used?
-* How will the system be powered?
-* How will analogue and digital grounds be handled?
-* What thermal requirements exist?
-* Will the final system require a custom PCB?
-* What enclosure constraints exist?
+### ESP32
 
-These questions will be answered progressively rather than assumed at the beginning of the project.
+* [ ] Jaki wariant ESP32 zostanie wykorzystany?
+* [ ] Czy wybrany układ posiada wystarczające zasoby?
+* [ ] Jakie interfejsy audio są dostępne?
+* [ ] Czy Wi-Fi i Bluetooth będą mogły pracować zgodnie z wymaganiami?
+
+### Audio
+
+* [ ] Jaki będzie format danych audio?
+* [ ] Jaki interfejs cyfrowego audio zostanie zastosowany?
+* [ ] Czy wymagany będzie zewnętrzny DAC?
+* [ ] Czy potrzebny będzie CODEC?
+* [ ] Czy wymagany będzie DSP?
+* [ ] Gdzie będzie realizowany podział pasma?
+* [ ] Jak zostanie wygenerowany kanał subwoofera?
+
+### Wzmacniacz
+
+* [ ] Jaka będzie wymagana moc wyjściowa?
+* [ ] Jaka będzie impedancja głośników?
+* [ ] Jakie napięcie zasilania będzie wymagane?
+* [ ] Jaka topologia wzmacniacza zostanie zastosowana?
+* [ ] Jakie będą wymagania termiczne?
+
+### Zasilanie
+
+* [ ] Jakie będzie napięcie wejściowe?
+* [ ] Jaka będzie maksymalna moc systemu?
+* [ ] Jakie napięcia będą wymagane dla poszczególnych bloków?
+* [ ] Jak zostaną rozdzielone sekcje zasilania?
+* [ ] Jak zostaną rozwiązane kwestie zakłóceń pomiędzy sekcją cyfrową i audio?
 
 ---
 
-# 7. Engineering Decisions
+# 7. Decyzje projektowe
 
-This section records important design decisions.
+Jednym z najważniejszych elementów dokumentacji jest zapisywanie **dlaczego** została podjęta konkretna decyzja.
 
-The goal is not only to document **what** was selected, but also **why**.
+Nie wystarczy:
+
+> „Wybrałem układ X.”
+
+Lepiej:
+
+> „Wybrałem układ X zamiast Y, ponieważ zapewnia wymagany interfejs, odpowiednią liczbę kanałów oraz pozwala ograniczyć liczbę dodatkowych komponentów.”
 
 ---
 
-## Decision #001 — Main MCU
+## Decyzja #001 — Wybór mikrokontrolera
 
-**Status:** 🟡 Under investigation
+**Data:** 20.09.2026
 
-### Candidates
+**Status:** 🟡 W trakcie analizy
+
+### Rozważane rozwiązania
 
 * ESP32
 * ESP32-S3
-* ESP32-A series
-* Other ESP32 variants
+* Inny wariant ESP32
 
-### Requirements
+### Wymagania
 
-The selected platform must provide sufficient resources for:
+Wybrany mikrokontroler powinien zapewniać:
 
-* Wireless connectivity
-* Audio processing
-* Bluetooth functionality
-* Wi-Fi functionality
-* Required audio interfaces
-* Firmware
-* Future expansion
+* Wi-Fi,
+* Bluetooth,
+* odpowiednią wydajność,
+* wymagane interfejsy,
+* możliwość obsługi audio,
+* możliwość dalszego rozwoju firmware'u.
 
-### Decision
+### Wybrana opcja
 
 **TBD**
 
-### Reason
+### Uzasadnienie
 
 **TBD**
 
-### Alternatives considered
+### Alternatywy
 
 **TBD**
 
 ---
 
-## Decision #002 — Digital Audio Interface
+## Decyzja #002 — Interfejs audio
 
-**Status:** ⚪ Not decided
+**Status:** ⚪ Do ustalenia
 
-Possible interfaces:
+### Rozważane rozwiązania
 
 * I2S
-* Other suitable digital audio interface
+* inne rozwiązanie — TBD
 
-### Decision
-
-**TBD**
-
-### Reason
+### Wybrana opcja
 
 **TBD**
 
----
-
-## Decision #003 — DAC / CODEC
-
-**Status:** ⚪ Not decided
-
-### Candidates
-
-**TBD**
-
-### Decision
-
-**TBD**
-
-### Reason
+### Uzasadnienie
 
 **TBD**
 
 ---
 
-## Decision #004 — Amplifier
+## Decyzja #003 — DAC / CODEC
 
-**Status:** ⚪ Not decided
+**Status:** ⚪ Do ustalenia
 
-### Requirements
-
-The amplifier stage must be selected according to:
-
-* Speaker impedance
-* Required output power
-* Supply voltage
-* Efficiency
-* Thermal performance
-* Audio quality
-* Physical size
-* Availability
-* Cost
-
-### Decision
-
-**TBD**
-
-### Reason
-
-**TBD**
-
----
-
-# 8. Research Log
-
-Use this section to record technical research before making decisions.
-
----
-
-## Research #001 — ESP32 Audio Capabilities
-
-**Date:** 2026-09-20
-
-### Question
-
-Can the selected ESP32 platform handle the required combination of:
-
-* Wi-Fi
-* Bluetooth
-* Spotify Connect
-* Digital audio
-* 3.1 processing?
-
-### Findings
-
-TBD
-
-### Sources
-
-TBD
-
-### Conclusion
-
-TBD
-
----
-
-## Research #002 — Spotify Connect
-
-**Date:** TBD
-
-### Question
-
-What software/library architecture should be used to implement Spotify Connect?
-
-### Findings
-
-TBD
-
-### Sources
-
-TBD
-
-### Conclusion
-
-TBD
-
----
-
-## Research #003 — Bluetooth Audio
-
-**Date:** TBD
-
-### Question
-
-Which Bluetooth audio profile and implementation should be used?
-
-### Findings
-
-TBD
-
-### Sources
-
-TBD
-
-### Conclusion
-
-TBD
-
----
-
-# 9. Development Timeline
-
-This section records major project milestones.
-
----
-
-## 2026-09-20 — Project Started
-
-### Completed
-
-* Created initial project concept
-* Defined basic 3.1 configuration
-* Selected ESP32 as the initial platform
-* Defined Spotify Connect as a target feature
-* Defined Bluetooth Audio as a target feature
-* Started engineering documentation
-
-### Result
-
-Initial project architecture created.
-
-### Next step
-
-Research ESP32 variants and audio architecture.
-
----
-
-# 10. Experiments
-
-Every important experiment should be documented here.
-
-The objective is to record measurable results rather than only describing what happened.
-
----
-
-## Experiment #001 — TBD
-
-**Date:** TBD
-
-### Objective
-
-TBD
-
-### Hypothesis
-
-TBD
-
-### Setup
-
-TBD
-
-### Equipment
+### Rozważane układy
 
 * TBD
 
-### Procedure
+### Wybrana opcja
+
+**TBD**
+
+### Uzasadnienie
+
+**TBD**
+
+---
+
+## Decyzja #004 — Wzmacniacz
+
+**Status:** ⚪ Do ustalenia
+
+### Wymagania
+
+Dobór wzmacniacza będzie zależał między innymi od:
+
+* impedancji głośników,
+* wymaganej mocy,
+* napięcia zasilania,
+* sprawności,
+* temperatury pracy,
+* dostępnej przestrzeni,
+* kosztu,
+* parametrów audio.
+
+### Wybrana opcja
+
+**TBD**
+
+### Uzasadnienie
+
+**TBD**
+
+---
+
+# 8. Dziennik badań i analiz
+
+W tej sekcji będą trafiać wyniki researchu.
+
+---
+
+## Analiza #001 — Możliwości platformy ESP32
+
+**Data:** 20.09.2026
+
+### Cel
+
+Sprawdzenie, czy wybrany wariant ESP32 może obsłużyć wymagane funkcje systemu.
+
+### Do sprawdzenia
+
+* możliwości audio,
+* I2S,
+* Wi-Fi,
+* Bluetooth,
+* dostępna pamięć,
+* wydajność CPU,
+* możliwości DMA,
+* biblioteki audio,
+* możliwości jednoczesnej pracy poszczególnych interfejsów.
+
+### Wyniki
+
+TBD
+
+### Źródła
+
+TBD
+
+### Wnioski
+
+TBD
+
+---
+
+## Analiza #002 — Spotify Connect
+
+**Data:** TBD
+
+### Cel
+
+Określenie sposobu implementacji Spotify Connect.
+
+### Sprawdzone rozwiązania
+
+TBD
+
+### Wyniki
+
+TBD
+
+### Problemy
+
+TBD
+
+### Wnioski
+
+TBD
+
+---
+
+## Analiza #003 — Bluetooth Audio
+
+**Data:** TBD
+
+### Cel
+
+Określenie sposobu obsługi dźwięku przez Bluetooth.
+
+### Sprawdzone rozwiązania
+
+TBD
+
+### Wyniki
+
+TBD
+
+### Wnioski
+
+TBD
+
+---
+
+# 9. Historia projektu
+
+## 20.09.2026 — Rozpoczęcie projektu
+
+### Wykonano
+
+* zdefiniowano koncepcję urządzenia,
+* określono konfigurację 3.1,
+* wybrano rodzinę ESP32 jako podstawę systemu,
+* określono Spotify Connect jako jedno ze źródeł audio,
+* określono Bluetooth jako drugie źródło audio,
+* rozpoczęto dokumentację projektu.
+
+### Aktualny rezultat
+
+Powstała pierwsza koncepcja architektury urządzenia.
+
+### Następny krok
+
+Analiza wariantów ESP32 oraz architektury toru audio.
+
+---
+
+# 10. Eksperymenty
+
+Każdy istotny eksperyment będzie dokumentowany.
+
+---
+
+## Eksperyment #001 — TBD
+
+**Data:** TBD
+
+### Cel
+
+TBD
+
+### Hipoteza
+
+TBD
+
+### Konfiguracja
+
+TBD
+
+### Wykorzystany sprzęt
+
+* TBD
+
+### Procedura
 
 1. TBD
 2. TBD
 3. TBD
 
-### Expected result
+### Oczekiwany rezultat
 
 TBD
 
-### Measured result
+### Wynik
 
 TBD
 
-### Conclusion
+### Wnioski
 
 TBD
 
-### Photos
+### Zdjęcia
 
 TBD
 
 ---
 
-# 11. Measurements
+# 11. Pomiary
 
-This section will contain actual measurements from the prototype.
+W tej sekcji będą umieszczane rzeczywiste pomiary wykonane podczas budowy urządzenia.
 
-Whenever possible, record:
+W miarę możliwości każdy pomiar powinien zawierać:
 
-* Instrument
-* Model
-* Measurement conditions
-* Supply voltage
-* Load
-* Ambient conditions
-* Measurement result
-* Date
+* mierzoną wielkość,
+* przyrząd pomiarowy,
+* model przyrządu,
+* warunki pomiaru,
+* napięcie zasilania,
+* obciążenie,
+* wynik,
+* datę.
 
 ---
 
-## Measurement #001
+## Pomiar #001
 
-**Parameter:** TBD
+**Data:** TBD
 
-**Instrument:** TBD
+**Parametr:** TBD
+
+**Przyrząd:** TBD
 
 **Model:** TBD
 
-**Conditions:** TBD
+**Warunki:** TBD
 
-**Result:** TBD
+**Wynik:** TBD
 
-**Date:** TBD
+### Zdjęcie
+
+TBD
+
+### Wnioski
+
+TBD
 
 ---
 
-# 12. Hardware Development
+# 12. Dokumentacja sprzętowa
 
-## 12.1 Schematic
+## 12.1 Schemat
 
-**Status:** ⚪ Not started
+**Status:** ⚪ Nie rozpoczęto
 
-Files:
+Planowana dokumentacja:
 
 ```text
 hardware/
@@ -519,35 +516,37 @@ hardware/
 
 ## 12.2 PCB
 
-**Status:** ⚪ Not started
+**Status:** ⚪ Planowane
 
-Planned documentation:
+Planowana dokumentacja:
 
-* Schematic
-* PCB layout
-* PCB revision
-* Gerber files
-* BOM
-* Pick & Place
-* Design rules
-* Manufacturing notes
-
----
-
-## 12.3 Bill of Materials
-
-| Reference | Component    | Part Number | Quantity | Status |
-| --------- | ------------ | ----------- | -------: | ------ |
-| U1        | ESP32        | TBD         |        1 | ⚪      |
-| U2        | DAC / CODEC  | TBD         |        1 | ⚪      |
-| U3        | Amplifier    | TBD         |        1 | ⚪      |
-| PSU       | Power supply | TBD         |        1 | ⚪      |
+* schemat,
+* PCB,
+* Gerbery,
+* BOM,
+* Pick & Place,
+* informacje produkcyjne,
+* wersje PCB,
+* zmiany pomiędzy rewizjami.
 
 ---
 
-# 13. Firmware
+# 13. Lista komponentów
 
-## 13.1 Planned Architecture
+| Oznaczenie | Element     | Model / Part Number | Ilość | Status |
+| ---------- | ----------- | ------------------- | ----: | ------ |
+| U1         | ESP32       | TBD                 |     1 | ⚪      |
+| U2         | DAC / CODEC | TBD                 |     1 | ⚪      |
+| U3         | Wzmacniacz  | TBD                 |     1 | ⚪      |
+| PSU        | Zasilacz    | TBD                 |     1 | ⚪      |
+
+Lista będzie aktualizowana podczas projektowania.
+
+---
+
+# 14. Firmware
+
+## 14.1 Planowana struktura
 
 ```text
 firmware/
@@ -567,362 +566,367 @@ firmware/
 └── system/
 ```
 
-The final architecture will be updated during development.
+Struktura może ulec zmianie w trakcie projektu.
 
 ---
 
-## 13.2 Firmware Milestones
+## 14.2 Kamienie milowe
 
-| Milestone                     | Status |
-| ----------------------------- | ------ |
-| ESP32 development environment | ⚪      |
-| Basic firmware                | ⚪      |
-| Wi-Fi connection              | ⚪      |
-| Bluetooth                     | ⚪      |
-| Audio output                  | ⚪      |
-| Spotify Connect               | ⚪      |
-| Audio routing                 | ⚪      |
-| DSP / crossover               | ⚪      |
-| System configuration          | ⚪      |
+| Funkcja             | Status |
+| ------------------- | ------ |
+| Uruchomienie ESP32  | ⚪      |
+| Podstawowy firmware | ⚪      |
+| Wi-Fi               | ⚪      |
+| Bluetooth           | ⚪      |
+| Wyjście audio       | ⚪      |
+| Spotify Connect     | ⚪      |
+| Routing audio       | ⚪      |
+| DSP                 | ⚪      |
+| Crossover           | ⚪      |
+| Obsługa systemu     | ⚪      |
 
 ---
 
-# 14. Problems & Debugging
+# 15. Problemy i debugowanie
 
-This section is especially important.
+Ta sekcja będzie zawierała również nieudane próby.
 
-Do not remove failed experiments.
+Nie należy usuwać błędnych rozwiązań.
 
-Document them.
+Są one częścią procesu inżynierskiego.
 
 ---
 
 ## Problem #001 — TBD
 
-**Date:** TBD
+**Data:** TBD
 
-### Symptom
-
-TBD
-
-### Expected behaviour
+### Objaw
 
 TBD
 
-### Actual behaviour
+### Oczekiwane zachowanie
 
 TBD
 
-### Initial hypothesis
+### Rzeczywiste zachowanie
 
 TBD
 
-### Tests performed
+### Pierwsza hipoteza
 
 TBD
 
-### Root cause
+### Wykonane testy
 
 TBD
 
-### Solution
+### Przyczyna
 
 TBD
 
-### Verification
+### Rozwiązanie
 
 TBD
 
-### Lesson learned
+### Weryfikacja
 
 TBD
 
----
-
-# 15. Design Changes
-
-Record every meaningful design change.
-
----
-
-## Change #001
-
-**Date:** TBD
-
-### Previous solution
-
-TBD
-
-### New solution
-
-TBD
-
-### Reason for change
-
-TBD
-
-### Expected benefit
-
-TBD
-
-### Result
+### Wnioski
 
 TBD
 
 ---
 
-# 16. Prototype Revisions
-
-Use revision numbers for hardware.
+# 16. Zmiany konstrukcyjne
 
 ---
 
-## Revision 0 — Concept
+## Zmiana #001
+
+**Data:** TBD
+
+### Poprzednie rozwiązanie
+
+TBD
+
+### Nowe rozwiązanie
+
+TBD
+
+### Powód zmiany
+
+TBD
+
+### Oczekiwany efekt
+
+TBD
+
+### Rezultat
+
+TBD
+
+---
+
+# 17. Rewizje sprzętu
+
+## Rev. 0 — Koncepcja
 
 **Status:** 🟡
 
-Initial architecture and requirements.
+Pierwsza koncepcja systemu.
 
 ---
 
-## Revision 1 — Prototype
+## Rev. 1 — Prototyp
 
-**Status:** ⚪ Planned
+**Status:** ⚪ Planowane
 
-Expected changes:
+Planowane elementy:
 
-* First hardware implementation
-* Basic audio path
-* ESP32 integration
-* Initial measurements
+* pierwsza wersja hardware'u,
+* ESP32,
+* podstawowy tor audio,
+* pierwsze testy,
+* pierwsze pomiary.
 
 ---
 
-## Revision 2
+## Rev. 2
 
-**Status:** ⚪ Planned
+**Status:** ⚪ Planowane
 
-Changes:
+### Zmiany
 
 TBD
 
 ---
 
-# 17. Testing Plan
+# 18. Plan testów
 
-Before calling the project complete, the following areas should be tested.
+## Testy funkcjonalne
 
-### Functional tests
+* [ ] ESP32 uruchamia się prawidłowo
+* [ ] Wi-Fi działa
+* [ ] Bluetooth działa
+* [ ] Spotify Connect działa
+* [ ] Wyjście audio działa
+* [ ] Kanał L działa
+* [ ] Kanał R działa
+* [ ] Kanał SUB działa
+* [ ] Routing audio działa
+* [ ] System reaguje poprawnie na utratę połączenia
 
-* [ ] ESP32 boots correctly
-* [ ] Wi-Fi connection works
-* [ ] Bluetooth connection works
-* [ ] Spotify Connect works
-* [ ] Audio output works
-* [ ] Left channel works
-* [ ] Right channel works
-* [ ] Subwoofer works
-* [ ] Audio routing works
-* [ ] System recovers from connection loss
+## Testy audio
 
-### Audio tests
+* [ ] Pasmo przenoszenia
+* [ ] Poziom wyjściowy
+* [ ] Separacja kanałów
+* [ ] Poziom szumów
+* [ ] THD / THD+N
+* [ ] Częstotliwość podziału subwoofera
+* [ ] Maksymalny poziom wyjściowy
 
-* [ ] Frequency response
-* [ ] Output level
-* [ ] Channel separation
-* [ ] Noise floor
-* [ ] Distortion
-* [ ] Subwoofer crossover
-* [ ] Maximum output level
+## Testy sprzętowe
 
-### Hardware tests
-
-* [ ] Power consumption
-* [ ] Thermal performance
-* [ ] Long-term stability
-* [ ] Startup behaviour
-* [ ] Protection behaviour
-
----
-
-# 18. Known Limitations
-
-At the current stage:
-
-* Hardware architecture is not finalized.
-* DAC / CODEC has not been selected.
-* Amplifier has not been selected.
-* Power supply architecture has not been finalized.
-* Spotify Connect implementation has not been finalized.
-* Bluetooth implementation has not been finalized.
-* Audio processing architecture has not been finalized.
-* No custom PCB exists yet.
-
-This section will be updated throughout development.
+* [ ] Pobór prądu
+* [ ] Temperatura pracy
+* [ ] Stabilność długoterminowa
+* [ ] Zachowanie podczas uruchamiania
+* [ ] Zachowanie po utracie zasilania
+* [ ] Odporność na zakłócenia
 
 ---
 
-# 19. Current Status
+# 19. Zdjęcia projektu
 
-**Overall status:** 🟡 In development
+Zdjęcia będą dodawane podczas kolejnych etapów.
 
-### Completed
-
-* [x] Project concept
-* [x] Initial system definition
-* [x] Basic 3.1 architecture
-* [x] Initial ESP32 selection
-* [x] Documentation structure
-
-### In progress
-
-* [ ] ESP32 platform research
-* [ ] Audio architecture
-* [ ] Connectivity architecture
-* [ ] Component selection
-
-### Planned
-
-* [ ] Prototype
-* [ ] Firmware
-* [ ] Schematic
-* [ ] PCB
-* [ ] Measurements
-* [ ] Audio testing
-* [ ] Enclosure
-* [ ] Final documentation
-
----
-
-# 20. Next Steps
-
-Current priorities:
-
-1. Determine the exact ESP32 variant.
-2. Investigate Spotify Connect implementation options.
-3. Investigate Bluetooth Audio implementation.
-4. Define the digital audio architecture.
-5. Determine whether an external DAC / CODEC is required.
-6. Define the 3.1 signal path.
-7. Determine the crossover strategy.
-8. Select the amplifier architecture.
-9. Define the power architecture.
-10. Update the system block diagram.
-11. Create the first hardware architecture proposal.
-
----
-
-# 21. Project Photos
-
-Photos will be added as the project progresses.
-
-Recommended structure:
+Planowana struktura:
 
 ```text
 images/
 │
-├── project-start/
-├── prototype/
+├── poczatek/
+├── prototyp/
 ├── pcb/
-├── measurements/
-├── debugging/
+├── pomiary/
+├── debugowanie/
 └── final/
 ```
 
-Example:
+Przykład dodania zdjęcia:
 
 ```markdown
-![Initial prototype](images/project-start/initial-prototype.jpg)
+![Pierwszy prototyp](images/poczatek/pierwszy-prototyp.jpg)
 ```
 
 ---
 
-# 22. Useful Documents
+# 20. Dokumentacja projektu
 
-| Document               | Description           |
-| ---------------------- | --------------------- |
-| `README.md`            | Project overview      |
-| `PROJECT_LOG.md`       | Development journal   |
-| `docs/requirements.md` | Detailed requirements |
-| `docs/architecture.md` | System architecture   |
-| `docs/decisions/`      | Engineering decisions |
-| `hardware/`            | Hardware design       |
-| `firmware/`            | Firmware              |
-| `measurements/`        | Measurements          |
-
----
-
-# 23. Lessons Learned
-
-This section should contain knowledge gained during the project.
-
-### Lesson #001
-
-**Date:** TBD
-
-**Topic:** TBD
-
-**What I learned:**
-
-TBD
-
-**How this affects the design:**
-
-TBD
+| Plik             | Zawartość                 |
+| ---------------- | ------------------------- |
+| `README.md`      | Główny opis projektu      |
+| `PROJECT_LOG.md` | Dziennik rozwoju projektu |
+| `docs/`          | Dokumentacja techniczna   |
+| `hardware/`      | Hardware                  |
+| `firmware/`      | Firmware                  |
+| `images/`        | Zdjęcia                   |
+| `measurements/`  | Pomiary                   |
 
 ---
 
-# 24. Final Project Summary
+# 21. Czego nauczyłem się podczas projektu
 
-> This section will be completed after the project reaches a stable prototype.
+Ta sekcja będzie rozwijana wraz z projektem.
 
-### Final architecture
+---
 
-TBD
+## Lekcja #001
 
-### Main components
+**Data:** TBD
 
-TBD
-
-### Measured performance
+### Temat
 
 TBD
 
-### Problems encountered
+### Czego się nauczyłem?
 
 TBD
 
-### Solutions implemented
-
-TBD
-
-### Final cost
-
-TBD
-
-### Development time
-
-TBD
-
-### What I would change in Revision 2
+### Jak wpłynęło to na projekt?
 
 TBD
 
 ---
 
-# 25. Portfolio Summary
+# 22. Aktualny stan projektu
 
-Short version for the public portfolio:
+**Status:** 🟡 W trakcie realizacji
+
+### Ukończone
+
+* [x] Koncepcja urządzenia
+* [x] Założenie systemu 3.1
+* [x] Wstępna architektura
+* [x] Wybór platformy ESP32 jako punktu wyjścia
+* [x] Rozpoczęcie dokumentacji
+
+### W trakcie
+
+* [ ] Analiza wariantów ESP32
+* [ ] Projekt architektury audio
+* [ ] Analiza Spotify Connect
+* [ ] Analiza Bluetooth Audio
+* [ ] Dobór DAC / CODEC
+* [ ] Dobór wzmacniacza
+* [ ] Projekt zasilania
+
+### Planowane
+
+* [ ] Prototyp
+* [ ] Firmware
+* [ ] Schemat
+* [ ] PCB
+* [ ] Pomiary
+* [ ] Testy audio
+* [ ] Obudowa
+* [ ] Testy końcowe
+* [ ] Dokumentacja końcowa
+
+---
+
+# 23. Następne kroki
+
+### Priorytet 1
+
+Ustalenie dokładnego wariantu ESP32.
+
+### Priorytet 2
+
+Analiza możliwości implementacji Spotify Connect.
+
+### Priorytet 3
+
+Analiza Bluetooth Audio.
+
+### Priorytet 4
+
+Zaprojektowanie cyfrowej ścieżki audio.
+
+### Priorytet 5
+
+Wybór DAC / CODEC.
+
+### Priorytet 6
+
+Określenie sposobu realizacji kanału subwoofera i crossovera.
+
+### Priorytet 7
+
+Dobór wzmacniacza.
+
+### Priorytet 8
+
+Projekt zasilania.
+
+---
+
+# 24. Podsumowanie projektu
+
+> **Sekcja zostanie uzupełniona po zakończeniu projektu.**
+
+### Finalna architektura
+
+TBD
+
+### Najważniejsze komponenty
+
+TBD
+
+### Najważniejsze parametry
+
+TBD
+
+### Wyniki pomiarów
+
+TBD
+
+### Problemy napotkane podczas budowy
+
+TBD
+
+### Najważniejsze decyzje projektowe
+
+TBD
+
+### Koszt wykonania
+
+TBD
+
+### Czas realizacji
+
+TBD
+
+### Co zmieniłbym w kolejnej rewizji?
+
+TBD
+
+---
+
+# 25. Opis do portfolio
+
+Krótki opis projektu, który może zostać wykorzystany na stronie portfolio:
 
 > **ESP32 3.1 Audio System**
-> Personal embedded audio project involving ESP32, wireless audio connectivity, digital audio processing, multi-channel amplification and custom hardware development. The project is documented from initial requirements and architecture through prototyping, debugging, measurements and final validation.
+> Projekt własnego systemu audio 3.1 opartego na platformie ESP32. Urządzenie łączy bezprzewodowe źródła audio, w tym Spotify Connect i Bluetooth, z cyfrowym przetwarzaniem sygnału oraz wielokanałowym wzmacniaczem. Projekt obejmuje analizę wymagań, projekt architektury, dobór komponentów, rozwój firmware'u, projekt hardware'u, prototypowanie, pomiary, debugowanie oraz końcową integrację.
 
 ---
 
-## Changelog
+# 26. Historia zmian dokumentacji
 
-| Date       | Version | Description                 |
-| ---------- | ------- | --------------------------- |
-| 2026-09-20 | v0.1    | Initial project log created |
-
----
+| Data       | Wersja | Zmiana                           |
+| ---------- | ------ | -------------------------------- |
+| 20.09.2026 | v0.1   | Utworzenie dokumentacji projektu |
