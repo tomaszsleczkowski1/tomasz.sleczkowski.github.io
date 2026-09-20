@@ -1,319 +1,1693 @@
 <!DOCTYPE html>
+
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomasz Ślęczkowski - Portfolio Inżynierskie</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --header-bg: #020617;
-            --border-color: #334155;
-            --tag-bg: #0f172a;
+
+```
+<!-- EDYTUJ: tytuł strony -->
+<title>Tomasz Ślęczkowski | Electronics Engineer</title>
+
+<meta name="description" content="Portfolio Tomasza Ślęczkowskiego - elektronika, embedded, projektowanie PCB, diagnostyka i naprawa elektroniki.">
+
+<style>
+    /* =========================================================
+       KOLORY I USTAWIENIA
+       ========================================================= */
+
+    :root {
+        --bg: #0f172a;
+        --bg-dark: #020617;
+        --card: #1e293b;
+        --card-hover: #26364d;
+
+        --accent: #38bdf8;
+        --accent-dark: #0284c7;
+
+        --text: #f8fafc;
+        --muted: #94a3b8;
+
+        --border: #334155;
+        --success: #22c55e;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+
+        --max-width: 1150px;
+    }
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family:
+            "Segoe UI",
+            Tahoma,
+            Geneva,
+            Verdana,
+            sans-serif;
+
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(56, 189, 248, 0.08),
+                transparent 30%
+            ),
+            var(--bg);
+
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100vh;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    button {
+        font-family: inherit;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        background: rgba(2, 6, 23, 0.94);
+        backdrop-filter: blur(12px);
+
+        border-bottom: 1px solid var(--border);
+
+        z-index: 1000;
+    }
+
+    .nav-container {
+        width: 100%;
+        max-width: var(--max-width);
+
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 1rem;
+    }
+
+    .logo {
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    .logo span {
+        color: var(--muted);
+        font-weight: 400;
+    }
+
+    nav {
+        display: flex;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .nav-button {
+        background: transparent;
+        border: none;
+
+        color: var(--muted);
+
+        padding: 0.6rem 0.85rem;
+
+        border-radius: 6px;
+
+        cursor: pointer;
+
+        font-size: 0.95rem;
+        font-weight: 600;
+
+        transition:
+            color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .nav-button:hover {
+        color: var(--text);
+        background: rgba(56, 189, 248, 0.08);
+    }
+
+    .nav-button.active {
+        color: var(--accent);
+        background: rgba(56, 189, 248, 0.1);
+    }
+
+    /* =========================================================
+       MAIN
+       ========================================================= */
+
+    main {
+        width: 100%;
+        max-width: var(--max-width);
+
+        margin: 0 auto;
+
+        padding:
+            120px
+            1.5rem
+            4rem;
+    }
+
+    .tab-content {
+        display: none;
+
+        animation: fadeIn 0.35s ease;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
-        header {
-            background-color: var(--header-bg);
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-sizing: border-box;
-            border-bottom: 1px solid var(--border-color);
-        }
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+        text-align: center;
+
+        padding:
+            3rem
+            1rem
+            4rem;
+    }
+
+    .hero-badge {
+        display: inline-block;
+
+        color: var(--accent);
+
+        border: 1px solid rgba(56, 189, 248, 0.3);
+
+        background: rgba(56, 189, 248, 0.08);
+
+        padding: 0.4rem 0.8rem;
+
+        border-radius: 999px;
+
+        font-family: monospace;
+
+        font-size: 0.85rem;
+
+        margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.4rem);
+
+        line-height: 1.15;
+
+        margin-bottom: 1.2rem;
+
+        color: var(--text);
+    }
+
+    .hero h1 span {
+        color: var(--accent);
+    }
+
+    .hero p {
+        max-width: 760px;
+
+        margin: 0 auto;
+
+        color: var(--muted);
+
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+        display: flex;
+
+        justify-content: center;
+
+        gap: 1rem;
+
+        flex-wrap: wrap;
+
+        margin-top: 2rem;
+    }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+
+    .btn {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 0.7rem 1.2rem;
+
+        border-radius: 7px;
+
+        text-decoration: none;
+
+        font-weight: 700;
+
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-primary {
+        background: var(--accent);
+        color: var(--bg-dark);
+    }
+
+    .btn-secondary {
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: var(--card);
+    }
+
+    .btn-secondary:hover {
+        background: var(--card-hover);
+    }
+
+    /* =========================================================
+       SEKCJE
+       ========================================================= */
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+        color: var(--muted);
+    }
+
+    /* =========================================================
+       GRID
+       ========================================================= */
+
+    .grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(auto-fit, minmax(300px, 1fr));
+
+        gap: 1.5rem;
+    }
+
+    /* =========================================================
+       CARDS
+       ========================================================= */
+
+    .card {
+        background:
+            linear-gradient(
+                145deg,
+                rgba(30, 41, 59, 0.95),
+                rgba(15, 23, 42, 0.95)
+            );
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 1.5rem;
+
+        transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            background 0.25s ease;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+
+        border-color: rgba(56, 189, 248, 0.45);
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(38, 54, 77, 0.98),
+                rgba(15, 23, 42, 0.98)
+            );
+    }
+
+    .card h3 {
+        color: var(--accent);
+
+        font-size: 1.25rem;
+
+        margin-bottom: 0.7rem;
+    }
+
+    .card p {
+        color: var(--muted);
+    }
+
+    .card-icon {
+        font-size: 2rem;
+
+        margin-bottom: 0.8rem;
+    }
+
+    /* =========================================================
+       TECHNOLOGIE
+       ========================================================= */
+
+    .tech-tags {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 0.45rem;
+
+        margin-top: 1rem;
+    }
+
+    .tag {
+        background: var(--bg-dark);
+
+        border: 1px solid var(--border);
+
+        color: var(--accent);
+
+        padding: 0.25rem 0.55rem;
+
+        border-radius: 5px;
+
+        font-family: monospace;
+
+        font-size: 0.78rem;
+    }
+
+    /* =========================================================
+       PROJEKTY
+       ========================================================= */
+
+    .project-card {
+        display: flex;
+        flex-direction: column;
+
+        min-height: 100%;
+    }
+
+    .project-status {
+        display: inline-block;
+
+        font-size: 0.75rem;
+
+        font-family: monospace;
+
+        padding: 0.25rem 0.55rem;
+
+        border-radius: 5px;
+
+        margin-bottom: 0.8rem;
+
+        width: fit-content;
+    }
+
+    .status-completed {
+        color: #86efac;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.25);
+    }
+
+    .status-progress {
+        color: #fcd34d;
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .status-planned {
+        color: #93c5fd;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .project-content {
+        flex-grow: 1;
+    }
+
+    .project-footer {
+        margin-top: 1.5rem;
+    }
+
+    /* =========================================================
+       NAPRAWY
+       ========================================================= */
+
+    .repair-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .repair-card::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 4px;
+        height: 100%;
+
+        background: var(--accent);
+    }
+
+    .repair-meta {
+        display: flex;
+
+        gap: 0.5rem;
+
+        flex-wrap: wrap;
+
+        margin-bottom: 1rem;
+    }
+
+    .repair-label {
+        font-size: 0.75rem;
+
+        padding: 0.25rem 0.5rem;
+
+        border-radius: 4px;
+
+        background: var(--bg-dark);
+
+        color: var(--muted);
+
+        border: 1px solid var(--border);
+    }
+
+    .repair-list {
+        margin: 1rem 0 0 1.2rem;
+
+        color: var(--muted);
+    }
+
+    .repair-list li {
+        margin-bottom: 0.4rem;
+    }
+
+    /* =========================================================
+       DETAILS
+       ========================================================= */
+
+    details {
+        margin-top: 1rem;
+
+        border-top: 1px solid var(--border);
+
+        padding-top: 1rem;
+    }
+
+    summary {
+        cursor: pointer;
+
+        color: var(--accent);
+
+        font-weight: 600;
+    }
+
+    details p {
+        margin-top: 0.8rem;
+    }
+
+    /* =========================================================
+       KONTAKT
+       ========================================================= */
+
+    .contact-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(auto-fit, minmax(250px, 1fr));
+
+        gap: 1.5rem;
+    }
+
+    .contact-card {
+        background: var(--card);
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 1.5rem;
+    }
+
+    .contact-card h3 {
+        color: var(--accent);
+
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+        color: var(--muted);
+    }
+
+    .contact-card a {
+        display: inline-block;
+
+        margin-top: 0.7rem;
+
+        color: var(--text);
+
+        font-weight: 600;
+
+        text-decoration: none;
+
+        word-break: break-word;
+    }
+
+    .contact-card a:hover {
+        color: var(--accent);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+        text-align: center;
+
+        color: var(--muted);
+
+        border-top: 1px solid var(--border);
+
+        padding: 2rem 1rem;
+
+        font-size: 0.9rem;
+    }
+
+    footer span {
+        color: var(--accent);
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 800px) {
 
         .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-direction: column;
+
+            padding:
+                0.8rem
+                1rem;
         }
 
         .logo {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--accent-color);
+            font-size: 0.9rem;
         }
 
         nav {
-            display: flex;
-            gap: 0.5rem;
+            width: 100%;
+
+            justify-content: center;
         }
 
-        input[type="radio"].tab-switch {
-            display: none;
-        }
+        .nav-button {
+            font-size: 0.85rem;
 
-        .tab-label {
-            color: var(--text-main);
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-            user-select: none;
-        }
-
-        .tab-label:hover {
-            color: var(--accent-color);
+            padding:
+                0.5rem
+                0.65rem;
         }
 
         main {
-            max-width: 1100px;
-            margin: 140px auto 4rem auto;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        /* UKRYWANIE I POKAZYWANIE ZAKŁADEK - POPRAWIONE */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        #tab1:checked ~ main #content-o-mnie,
-        #tab2:checked ~ main #content-projekty,
-        #tab3:checked ~ main #content-naprawy,
-        #tab4:checked ~ main #content-kontakt {
-            display: block !important;
-        }
-
-        #tab1:checked ~ header .tab-label[for="tab1"],
-        #tab2:checked ~ header .tab-label[for="tab2"],
-        #tab3:checked ~ header .tab-label[for="tab3"],
-        #tab4:checked ~ header .tab-label[for="tab4"] {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-            font-weight: 600;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding-top: 175px;
         }
 
         .hero {
-            text-align: center;
-            padding: 2.5rem 0;
+            padding-top: 1.5rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        nav {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            width: 100%;
+        }
+
+        .nav-button {
+            width: 100%;
+        }
+
+        main {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
         }
 
         .hero h1 {
-            color: var(--accent-color);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
         }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    }
+</style>
+```
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.8rem;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            color: var(--accent-color);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-body {
-            flex-grow: 1;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 0.8rem 0;
-        }
-
-        .tag {
-            background-color: var(--tag-bg);
-            color: var(--accent-color);
-            font-size: 0.8rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            border: 1px solid #1e293b;
-            font-family: monospace;
-        }
-
-        details {
-            background: rgba(15, 23, 42, 0.6);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            margin-top: 0.75rem;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        details[open] {
-            background: rgba(15, 23, 42, 0.9);
-        }
-
-        summary {
-            cursor: pointer;
-            font-weight: 600;
-            outline: none;
-        }
-
-        code {
-            background: #020617;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            color: #f43f5e;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-        }
-
-        .btn-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            background-color: var(--accent-color);
-            color: #0f172a;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            text-align: center;
-            transition: opacity 0.2s;
-        }
-
-        .btn-link:hover {
-            opacity: 0.9;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-        }
-
-        .contact-method {
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-method h4 {
-            margin: 0 0 0.3rem 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .contact-method a, .contact-method p {
-            margin: 0;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-method a {
-            color: var(--accent-color);
-        }
-        
-        .contact-method a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .nav-container { flex-direction: column; text-align: center; }
-            main { margin-top: 180px; }
-        }
-    </style>
 </head>
+
 <body>
 
-    <!-- Główny mechanizm przełączania zakładkami (musi być przed header i main) -->
-    <input type="radio" name="portfolio-tabs" id="tab1" class="tab-switch" checked>
-    <input type="radio" name="portfolio-tabs" id="tab2" class="tab-switch">
-    <input type="radio" name="portfolio-tabs" id="tab3" class="tab-switch">
-    <input type="radio" name="portfolio-tabs" id="tab4" class="tab-switch">
+<!-- =============================================================
+     NAWIGACJA
+     ============================================================= -->
 
-    <header>
-        <div class="nav-container">
-            <div class="logo">Tomasz Ślęczkowski // Electronics Engineer</div>
-            <nav>
-                <label for="tab1" class="tab-label">O mnie</label>
-                <label for="tab2" class="tab-label">Projekty</label>
-                <label for="tab3" class="tab-label">Naprawy</label>
-                <label for="tab4" class="tab-label">Kontakt</label>
-            </nav>
+<header>
+
+```
+<div class="nav-container">
+
+    <!-- EDYTUJ: nazwa w nagłówku -->
+    <div class="logo">
+        Tomasz Ślęczkowski
+        <span>// Electronics Engineer</span>
+    </div>
+
+    <nav>
+
+        <button
+            class="nav-button active"
+            data-tab="about">
+            O mnie
+        </button>
+
+        <button
+            class="nav-button"
+            data-tab="projects">
+            Projekty
+        </button>
+
+        <button
+            class="nav-button"
+            data-tab="repairs">
+            Naprawy
+        </button>
+
+        <button
+            class="nav-button"
+            data-tab="contact">
+            Kontakt
+        </button>
+
+    </nav>
+
+</div>
+```
+
+</header>
+
+<main>
+
+```
+<!-- =========================================================
+     O MNIE
+     ========================================================= -->
+
+<section
+    id="about"
+    class="tab-content active">
+
+    <div class="hero">
+
+        <div class="hero-badge">
+            ELECTRONICS / EMBEDDED / HARDWARE
         </div>
-    </header>
 
-    <main>
-        <!-- ZAKŁADKA: O MNIE -->
-        <div id="content-o-mnie" class="tab-content">
-            <div class="hero">
-                <h1>Cześć, nazywam się Tomasz Ślęczkowski</h1>
-                <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1.1rem;">
-                    Jestem inżynierem elektronikiem. Zajmuję się projektowaniem własnych urządzeń i systemów wbudowanych (Embedded) oraz zaawansowaną diagnostyką i naprawą sprzętu elektronicznego.
+        <!-- EDYTUJ -->
+        <h1>
+            Cześć, nazywam się
+            <span>Tomasz Ślęczkowski</span>
+        </h1>
+
+        <!-- EDYTUJ -->
+        <p>
+            Jestem inżynierem elektronikiem zainteresowanym
+            projektowaniem urządzeń elektronicznych, systemami
+            embedded, projektowaniem PCB oraz diagnostyką
+            i naprawą sprzętu elektronicznego.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn btn-primary"
+                onclick="showTab('projects')">
+                Zobacz projekty
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="showTab('contact')">
+                Kontakt
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="section-header">
+
+        <h2>
+            Mój stack technologiczny
+        </h2>
+
+        <p>
+            Technologie, narzędzia i obszary, z którymi pracuję
+            lub które rozwijam.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="card-icon">
+                🔧
+            </div>
+
+            <h3>
+                Hardware / PCB
+            </h3>
+
+            <p>
+                Projektowanie schematów, płytek PCB, dobór
+                komponentów oraz przygotowanie dokumentacji
+                technicznej.
+            </p>
+
+            <div class="tech-tags">
+                <span class="tag">KiCad</span>
+                <span class="tag">Altium</span>
+                <span class="tag">PCB</span>
+                <span class="tag">SMD</span>
+                <span class="tag">BGA</span>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                💻
+            </div>
+
+            <h3>
+                Firmware / Embedded
+            </h3>
+
+            <p>
+                Programowanie mikrokontrolerów i tworzenie
+                oprogramowania dla urządzeń elektronicznych.
+            </p>
+
+            <div class="tech-tags">
+                <span class="tag">C</span>
+                <span class="tag">C++</span>
+                <span class="tag">STM32</span>
+                <span class="tag">ESP32</span>
+                <span class="tag">UART</span>
+                <span class="tag">SPI</span>
+                <span class="tag">I2C</span>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                📡
+            </div>
+
+            <h3>
+                Diagnostyka
+            </h3>
+
+            <p>
+                Lokalizowanie usterek elektronicznych,
+                pomiary napięć i przebiegów oraz analiza
+                zachowania układów.
+            </p>
+
+            <div class="tech-tags">
+                <span class="tag">Oscilloscope</span>
+                <span class="tag">Multimeter</span>
+                <span class="tag">Logic Analyzer</span>
+                <span class="tag">Soldering</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJEKTY
+     ========================================================= -->
+
+<section
+    id="projects"
+    class="tab-content">
+
+    <div class="section-header">
+
+        <h2>
+            Projekty
+        </h2>
+
+        <p>
+            Przykładowe projekty własne. Docelowo możesz tutaj
+            dodawać linki do repozytoriów, zdjęcia PCB,
+            schematy oraz dokumentację.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+        <!-- PROJEKT 1 -->
+
+        <article class="card project-card">
+
+            <div class="project-content">
+
+                <div class="project-status status-completed">
+                    COMPLETED
+                </div>
+
+                <h3>
+                    Bezprzewodowy węzeł IoT
+                </h3>
+
+                <p>
+                    Kompaktowe urządzenie pomiarowe oparte
+                    na ESP32. Układ zbiera dane z czujników
+                    i przesyła je bezprzewodowo do systemu
+                    nadrzędnego.
                 </p>
+
+                <div class="tech-tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">KiCad</span>
+                    <span class="tag">I2C</span>
+                    <span class="tag">Wi-Fi</span>
+                    <span class="tag">Low Power</span>
+                </div>
+
+                <details>
+
+                    <summary>
+                        Szczegóły projektu
+                    </summary>
+
+                    <p>
+                        Projekt obejmował przygotowanie schematu,
+                        PCB, firmware oraz testy prototypu.
+                        W przyszłości tutaj można dodać link
+                        do repozytorium GitHub oraz zdjęcia
+                        gotowego urządzenia.
+                    </p>
+
+                </details>
+
             </div>
-            <h2>Mój Stack Technologiczny & Narzędzia</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Hardware / EDA</h3>
-                    <p>Projektowanie wielowarstwowych obwodów drukowanych, dobór komponentów, tworzenie schematów ideowych (np. KiCad, Altium Designer).</p>
-                </div>
-                <div class="card">
-                    <h3>Firmware / Embedded</h3>
-                    <p>Język C/C++, programowanie mikrokontrolerów (STM32, ESP32), znajomość protokołów komunikacyjnych (I2C, SPI, UART).</p>
-                </div>
-                <div class="card">
-                    <h3>Aparatura Laboratoryjna</h3>
-                    <p>Praca z oscyloskopem, analizatorem stanów logicznych, stacją lutowniczą (Lutowanie SMD/BGA) oraz zaawansowana diagnostyka usterek hardware'owych.</p>
-                </div>
+
+            <div class="project-footer">
+
+                <!-- EDYTUJ: podmień # na link do repo -->
+                <a
+                    href="#"
+                    class="btn btn-secondary"
+                    onclick="return false;">
+                    GitHub — wkrótce
+                </a>
+
             </div>
+
+        </article>
+
+
+        <!-- PROJEKT 2 -->
+
+        <article class="card project-card">
+
+            <div class="project-content">
+
+                <div class="project-status status-progress">
+                    IN PROGRESS
+                </div>
+
+                <h3>
+                    Programowalny zasilacz laboratoryjny
+                </h3>
+
+                <p>
+                    Projekt własnego zasilacza laboratoryjnego
+                    z cyfrową regulacją napięcia i prądu,
+                    pomiarem parametrów oraz interfejsem
+                    użytkownika.
+                </p>
+
+                <div class="tech-tags">
+                    <span class="tag">STM32</span>
+                    <span class="tag">C</span>
+                    <span class="tag">DAC</span>
+                    <span class="tag">ADC</span>
+                    <span class="tag">PCB</span>
+                    <span class="tag">UART</span>
+                </div>
+
+                <details>
+
+                    <summary>
+                        Założenia
+                    </summary>
+
+                    <p>
+                        Regulacja parametrów, pomiar napięcia
+                        i prądu, zabezpieczenie przeciwzwarciowe
+                        oraz komunikacja z komputerem.
+                    </p>
+
+                </details>
+
+            </div>
+
+            <div class="project-footer">
+
+                <a
+                    href="#"
+                    class="btn btn-secondary"
+                    onclick="return false;">
+                    Dokumentacja — wkrótce
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PROJEKT 3 -->
+
+        <article class="card project-card">
+
+            <div class="project-content">
+
+                <div class="project-status status-completed">
+                    COMPLETED
+                </div>
+
+                <h3>
+                    Tester modułów elektronicznych
+                </h3>
+
+                <p>
+                    Uniwersalne stanowisko testowe służące
+                    do sprawdzania podstawowych funkcji
+                    wybranych modułów elektronicznych.
+                </p>
+
+                <div class="tech-tags">
+                    <span class="tag">STM32</span>
+                    <span class="tag">C</span>
+                    <span class="tag">GPIO</span>
+                    <span class="tag">ADC</span>
+                    <span class="tag">UART</span>
+                </div>
+
+                <details>
+
+                    <summary>
+                        Zakres projektu
+                    </summary>
+
+                    <p>
+                        Projekt obejmował firmware,
+                        przygotowanie płytki testowej
+                        oraz opracowanie procedury
+                        automatycznej weryfikacji.
+                    </p>
+
+                </details>
+
+            </div>
+
+            <div class="project-footer">
+
+                <a
+                    href="#"
+                    class="btn btn-secondary"
+                    onclick="return false;">
+                    GitHub — wkrótce
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PROJEKT 4 -->
+
+        <article class="card project-card">
+
+            <div class="project-content">
+
+                <div class="project-status status-planned">
+                    PLANNED
+                </div>
+
+                <h3>
+                    System monitorowania parametrów PCB
+                </h3>
+
+                <p>
+                    Planowany system do rejestracji temperatury,
+                    napięć oraz innych parametrów pracy
+                    urządzenia elektronicznego.
+                </p>
+
+                <div class="tech-tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Sensors</span>
+                    <span class="tag">MQTT</span>
+                    <span class="tag">Wi-Fi</span>
+                    <span class="tag">Python</span>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NAPRAWY
+     ========================================================= -->
+
+<section
+    id="repairs"
+    class="tab-content">
+
+    <div class="section-header">
+
+        <h2>
+            Naprawy i diagnostyka
+        </h2>
+
+        <p>
+            Przykładowe przypadki diagnostyczne. W przyszłości
+            możesz tutaj dodawać rzeczywiste naprawy wraz
+            ze zdjęciami, pomiarami i opisem procesu.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+        <!-- NAPRAWA 1 -->
+
+        <article class="card repair-card">
+
+            <div class="repair-meta">
+
+                <span class="repair-label">
+                    LAPTOP
+                </span>
+
+                <span class="repair-label">
+                    POWER
+                </span>
+
+            </div>
+
+            <h3>
+                Laptop — brak uruchamiania
+            </h3>
+
+            <p>
+                Urządzenie nie reagowało na przycisk
+                zasilania pomimo obecności napięcia
+                wejściowego.
+            </p>
+
+            <ul class="repair-list">
+
+                <li>
+                    Pomiar napięć wejściowych
+                </li>
+
+                <li>
+                    Analiza sekcji zasilania
+                </li>
+
+                <li>
+                    Sprawdzenie zwarć na liniach zasilających
+                </li>
+
+                <li>
+                    Lokalizacja uszkodzonego elementu
+                </li>
+
+            </ul>
+
+            <details>
+
+                <summary>
+                    Opis diagnostyki
+                </summary>
+
+                <p>
+                    Przykładowy opis procesu diagnostycznego.
+                    W rzeczywistym przypadku możesz tutaj
+                    opisać konkretne pomiary, wykorzystane
+                    przyrządy oraz sposób usunięcia usterki.
+                </p>
+
+            </details>
+
+        </article>
+
+
+        <!-- NAPRAWA 2 -->
+
+        <article class="card repair-card">
+
+            <div class="repair-meta">
+
+                <span class="repair-label">
+                    PCB
+                </span>
+
+                <span class="repair-label">
+                    SMD
+                </span>
+
+            </div>
+
+            <h3>
+                Płytka sterująca — niestabilna praca
+            </h3>
+
+            <p>
+                Urządzenie uruchamiało się losowo,
+                a mikrokontroler resetował się podczas
+                pracy.
+            </p>
+
+            <ul class="repair-list">
+
+                <li>
+                    Analiza linii zasilających
+                </li>
+
+                <li>
+                    Pomiar oscyloskopem
+                </li>
+
+                <li>
+                    Sprawdzenie kondensatorów filtrujących
+                </li>
+
+                <li>
+                    Analiza przebiegów podczas resetu
+                </li>
+
+            </ul>
+
+            <details>
+
+                <summary>
+                    Wynik
+                </summary>
+
+                <p>
+                    Przykładowy przypadek zakończony
+                    wymianą elementu w sekcji zasilania
+                    i ponownym testem całego urządzenia.
+                </p>
+
+            </details>
+
+        </article>
+
+
+        <!-- NAPRAWA 3 -->
+
+        <article class="card repair-card">
+
+            <div class="repair-meta">
+
+                <span class="repair-label">
+                    ELECTRONICS
+                </span>
+
+                <span class="repair-label">
+                    DIAGNOSTICS
+                </span>
+
+            </div>
+
+            <h3>
+                Moduł elektroniczny — brak komunikacji
+            </h3>
+
+            <p>
+                Moduł nie komunikował się z urządzeniem
+                nadrzędnym przez interfejs komunikacyjny.
+            </p>
+
+            <ul class="repair-list">
+
+                <li>
+                    Sprawdzenie zasilania transceivera
+                </li>
+
+                <li>
+                    Analiza magistrali oscyloskopem
+                </li>
+
+                <li>
+                    Weryfikacja poziomów logicznych
+                </li>
+
+                <li>
+                    Sprawdzenie terminacji magistrali
+                </li>
+
+            </ul>
+
+            <details>
+
+                <summary>
+                    Przykładowa diagnoza
+                </summary>
+
+                <p>
+                    Problem został zlokalizowany w części
+                    komunikacyjnej układu. Po wymianie
+                    uszkodzonego elementu wykonano test
+                    komunikacji oraz test długotrwały.
+                </p>
+
+            </details>
+
+        </article>
+
+
+        <!-- NAPRAWA 4 -->
+
+        <article class="card repair-card">
+
+            <div class="repair-meta">
+
+                <span class="repair-label">
+                    SMD
+                </span>
+
+                <span class="repair-label">
+                    MICRO-SOLDERING
+                </span>
+
+            </div>
+
+            <h3>
+                Uszkodzony element SMD
+            </h3>
+
+            <p>
+                Diagnostyka i wymiana uszkodzonego
+                komponentu w układzie elektronicznym.
+            </p>
+
+            <ul class="repair-list">
+
+                <li>
+                    Identyfikacja komponentu
+                </li>
+
+                <li>
+                    Pomiary porównawcze
+                </li>
+
+                <li>
+                    Demontaż elementu
+                </li>
+
+                <li>
+                    Montaż nowego komponentu
+                </li>
+
+                <li>
+                    Test funkcjonalny
+                </li>
+
+            </ul>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     KONTAKT
+     ========================================================= -->
+
+<section
+    id="contact"
+    class="tab-content">
+
+    <div class="section-header">
+
+        <h2>
+            Kontakt
+        </h2>
+
+        <p>
+            Jeśli chcesz się ze mną skontaktować w sprawie
+            projektu, elektroniki, diagnostyki lub współpracy,
+            możesz wykorzystać poniższe dane.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <!-- EDYTUJ -->
+
+        <div class="contact-card">
+
+            <div class="card-icon">
+                ✉️
+            </div>
+
+            <h3>
+                E-mail
+            </h3>
+
+            <p>
+                Kontakt w sprawie projektów i współpracy.
+            </p>
+
+            <!-- EDYTUJ: swój adres -->
+            <a href="mailto:tomasz@example.com">
+                tomasz@example.com
+            </a>
+
         </div>
 
-        <!-- ZAKŁADKA: PROJEKTY -->
-        <div id="content-projekty" class="tab-content">
-            <h2>Projekty Własne i Konstruktorskie</h2>
-            <p style="color: var(--text-muted)">Moje autorskie układy elektroniczne stworzone od podstaw – od schematu, przez projekt PCB, do oprogramowania.</p>
-            <div class="grid">
-                
-                <!-- PROJEKT 1 -->
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Bezprzewodowy Węzeł IoT (ESP32)</h3>
-                        <div class="tech-tags">
-                            <span class="tag">ESP32</span><span class="tag">KiCad</span><span class="tag">C</span><span class="tag">I2C</span><span class="tag">Low-Power</span>
+
+        <!-- EDYTUJ -->
+
+        <div class="contact-card">
+
+            <div class="card-icon">
+                💻
+            </div>
+
+            <h3>
+                GitHub
+            </h3>
+
+            <p>
+                Moje repozytoria, projekty i kod źródłowy.
+            </p>
+
+            <!-- EDYTUJ: swój profil GitHub -->
+            <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                github.com/twoj-profil
+
+            </a>
+
+        </div>
+
+
+        <!-- EDYTUJ -->
+
+        <div class="contact-card">
+
+            <div class="card-icon">
+                💼
+            </div>
+
+            <h3>
+                LinkedIn
+            </h3>
+
+            <p>
+                Profil zawodowy i informacje o doświadczeniu.
+            </p>
+
+            <!-- EDYTUJ: swój profil LinkedIn -->
+            <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+
+        <!-- EDYTUJ -->
+
+        <div class="contact-card">
+
+            <div class="card-icon">
+                📍
+            </div>
+
+            <h3>
+                Lokalizacja
+            </h3>
+
+            <p>
+                Polska
+            </p>
+
+            <!-- EDYTUJ -->
+            <a href="#">
+                Dostępny do współpracy
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="card"
+        style="margin-top: 1.5rem;">
+
+        <h3>
+            Dostępność
+        </h3>
+
+        <p>
+            Aktualnie rozwijam portfolio oraz dokumentuję
+            kolejne projekty elektroniczne. Wkrótce pojawią
+            się tutaj bardziej szczegółowe opisy projektów,
+            zdjęcia PCB, schematy oraz linki do repozytoriów.
+        </p>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- =============================================================
+     FOOTER
+     ============================================================= -->
+
+<footer>
+
+```
+<!-- EDYTUJ: rok i dane -->
+
+© 2026
+<span>Tomasz Ślęczkowski</span>
+— Electronics / Embedded / Hardware
+```
+
+</footer>
+
+<!-- =============================================================
+     JAVASCRIPT — OBSŁUGA ZAKŁADEK
+     ============================================================= -->
+
+<script>
+
+    /*
+     * Pobieramy wszystkie przyciski nawigacji
+     */
+    const navButtons =
+        document.querySelectorAll(".nav-button");
+
+    /*
+     * Pobieramy wszystkie sekcje zakładek
+     */
+    const tabs =
+        document.querySelectorAll(".tab-content");
+
+    /*
+     * Funkcja zmieniająca aktywną zakładkę
+     */
+    function showTab(tabId) {
+
+        /*
+         * Ukryj wszystkie zakładki
+         */
+        tabs.forEach(function(tab) {
+
+            tab.classList.remove("active");
+
+        });
+
+        /*
+         * Usuń aktywny wygląd
+         * ze wszystkich przycisków
+         */
+        navButtons.forEach(function(button) {
+
+            button.classList.remove("active");
+
+        });
+
+        /*
+         * Pokaż wybraną zakładkę
+         */
+        const selectedTab =
+            document.getElementById(tabId);
+
+        if (selectedTab) {
+
+            selectedTab.classList.add("active");
+
+        }
+
+        /*
+         * Ustaw aktywny przycisk
+         */
+        const selectedButton =
+            document.querySelector(
+                '.nav-button[data-tab="' + tabId + '"]'
+            );
+
+        if (selectedButton) {
+
+            selectedButton.classList.add("active");
+
+        }
+
+        /*
+         * Przewiń stronę na początek zawartości
+         */
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    /*
+     * Obsługa kliknięcia w menu
+     */
+    navButtons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            const tabId =
+                this.getAttribute("data-tab");
+
+            showTab(tabId);
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
