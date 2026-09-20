@@ -183,7 +183,7 @@
             <div class="grid">
                 <div class="card">
                     <h3>Hardware / EDA</h3>
-                    <p>Projektowanie wielowarstwowych obwodów drukowanych, dobór komponentów, tworzenie schematów ideowych (np. KiCad, Altium Designer).</p>
+                    <p>Projektowanie wielowarstwowych obwodów drukonwanych, dobór komponentów, tworzenie schematów ideowych (np. KiCad, Altium Designer).</p>
                 </div>
                 <div class="card">
                     <h3>Firmware / Embedded</h3>
@@ -210,7 +210,7 @@
                         
                         <details>
                             <summary>📐 Hardware & PCB</summary>
-                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
+                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prążku spoczynkowym (I_q = 1µA).</p>
                         </details>
 
                         <details>
@@ -237,37 +237,40 @@
                             <p>Generowanie sygnałów komplementarnych <code>PWM</code> z czasem martwym (Deadtime) na timerach zaawansowanych STM32.</p>
                         </details>
                     </div>
-                    <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
+                    <a href="#" class="btn-link">Zobacz szczegóły projektu</a>
                 </div>
-
-                <!-- PROJEKT 3 -->
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Wielokanałowy Rejestrator Danych (STM32)</h3>
-                        <p style="color: var(--text-muted)">System akwizycji danych z czujników analogowych z zapisem na kartę SD.</p>
-                        
-                        <details>
-                            <summary>📐 Hardware & PCB</summary>
-                            <p>Układ wyposażony w zewnętrzny, precyzyjny przetwornik ADC oraz bufory wejściowe na wzmacniaczach operacyjnych.</p>
-                        </details>
-
-                        <details>
-                            <summary>💻 Firmware (Kod)</summary>
-                            <p>Wykorzystanie systemu plików FATFS do obsługi <code>SPI</code> i zapisu plików na karcie SD w czasie rzeczywistym.</p>
-                        </details>
-                    </div>
-                    <a href="#" class="btn-link">Zobacz repozytorium kodu</a>
-                </div>
-
             </div>
         </div>
 
         <!-- ZAKŁADKA: NAPRAWY -->
         <div id="naprawy" class="tab-content">
-            <h2>Diagnostyka i Naprawa Elektroniki</h2>
-            <p style="color: var(--text-muted)">Przykłady serwisowania i przywracania do sprawności zaawansowanego sprzętu elektronicznego.</p>
+            <h2>Diagnostyka i Naprawa Aparatury</h2>
+            <p style="color: var(--text-muted)">Przykłady serwisowanych urządzeń, lokalizacja usterek i proces przywracania sprzętu do sprawności.</p>
             <div class="grid">
                 <div class="card">
-                    <div class="card-body">
-                        <h3>Naprawa płyty głównej laptopa</h3>
-                        <p style="color: var(--text-muted)">Diagnostyka zwarcia w głównej linii zasilania (19V).</p>
+                    <h3>Naprawa Oscyloskopu Cyfrowego</h3>
+                    <p>Diagnoza uszkodzenia w sekcji zasilacza impulsowego. Wymiana spuchniętych kondensatorów i uszkodzonego klucza przetwornicy.</p>
+                </div>
+                <div class="card">
+                    <h3>Rebuilding laptopa po zalaniu</h3>
+                    <p>Czyszczenie w myjce ultradźwiękowej, odbudowa skorodowanych ścieżek oraz wymiana kontrolera KBC.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ZAKŁADKA: KONTAKT -->
+        <div id="kontakt" class="tab-content">
+            <h2>Skontaktuj się ze mną</h2>
+            <p>Jeśli jesteś zainteresowany współpracą inżynierską, napisz lub zadzwoń:</p>
+            <div class="contact-info">
+                <p>📧 Email: <a href="mailto:tomasz@sleczkowski.pl">tomasz@sleczkowski.pl</a></p>
+                <p>📱 Telefon: <a href="tel:+48123456789">+48 123 456 789</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- SKRYPT JAVASCRIPT DO OBSŁUGI ZAKŁADEK -->
+    <script>
+        function openTab(tabId, clickedButton) {
+            // Ukryj całą zawartość zakładek
+            const contents = document.querySelectorAll('.tab-content');
