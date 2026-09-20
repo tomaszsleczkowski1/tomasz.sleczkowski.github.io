@@ -13,6 +13,7 @@
             --text-muted: #94a3b8;
             --header-bg: #020617;
             --border-color: #334155;
+            --tag-bg: #0f172a;
         }
 
         body {
@@ -51,18 +52,15 @@
             color: var(--accent-color);
         }
 
-        /* MECHANIZM ZAKŁADEK BEZ JAVASCRIPT (CSS ONLY) */
         nav {
             display: flex;
             gap: 0.5rem;
         }
 
-        /* Ukrywamy domyślne inputy radio */
         input[type="radio"].tab-switch {
             display: none;
         }
 
-        /* Stylizujemy labele, aby wyglądały jak profesjonalne przyciski */
         .tab-label {
             color: var(--text-main);
             font-size: 1rem;
@@ -84,7 +82,6 @@
             position: relative;
         }
 
-        /* Ukrywanie i pokazywanie sekcji w zależności od zaznaczonego inputa */
         .tab-content {
             display: none;
             animation: fadeIn 0.4s ease forwards;
@@ -97,7 +94,6 @@
             display: block;
         }
 
-        /* Podświetlanie aktywnego "przycisku" w menu */
         #tab1:checked ~ header .tab-label[for="tab1"],
         #tab2:checked ~ header .tab-label[for="tab2"],
         #tab3:checked ~ header .tab-label[for="tab3"],
@@ -107,13 +103,11 @@
             font-weight: 600;
         }
 
-        /* ANIMACJA PŁYNNEGO POJAWIANIA SIĘ ZAKŁADEK */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* SEKCJE I ELEMENTY WIZUALNE */
         .hero {
             text-align: center;
             padding: 2.5rem 0;
@@ -147,20 +141,36 @@
             margin-top: 0;
             color: var(--accent-color);
             font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .card-body {
             flex-grow: 1;
         }
 
-        /* AKORDIONY DETAILS */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0.8rem 0;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid #1e293b;
+            font-family: monospace;
+        }
+
         details {
             background: rgba(15, 23, 42, 0.6);
             padding: 0.75rem 1rem;
             border-radius: 6px;
             margin-top: 0.75rem;
             border-left: 3px solid var(--accent-color);
-            transition: background 0.3s;
         }
 
         details[open] {
@@ -199,30 +209,45 @@
             opacity: 0.9;
         }
         
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
         .contact-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
-            max-width: 500px;
-            margin: 2rem auto 0 auto;
-            text-align: center;
         }
 
-        .contact-info {
-            font-size: 1.2rem;
-            margin: 1.5rem 0;
-            text-align: left;
-            display: inline-block;
+        .contact-method {
+            margin-bottom: 1.5rem;
         }
-        
-        .contact-info a {
-            color: var(--accent-color);
+
+        .contact-method h4 {
+            margin: 0 0 0.3rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-method a, .contact-method p {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
         }
+
+        .contact-method a {
+            color: var(--accent-color);
+        }
         
-        .contact-info a:hover {
+        .contact-method a:hover {
             text-decoration: underline;
         }
 
@@ -235,7 +260,6 @@
 </head>
 <body>
 
-    <!-- Ukryte przełączniki radiowe sterujące widokiem stron -->
     <input type="radio" name="portfolio-tabs" id="tab1" class="tab-switch" checked>
     <input type="radio" name="portfolio-tabs" id="tab2" class="tab-switch">
     <input type="radio" name="portfolio-tabs" id="tab3" class="tab-switch">
@@ -245,7 +269,6 @@
         <div class="nav-container">
             <div class="logo">Tomasz Ślęczkowski // Electronics Engineer</div>
             <nav>
-                <!-- Labele powiązane z odpowiednimi inputami za pomocą atrybutu 'for' -->
                 <label for="tab1" class="tab-label">O mnie</label>
                 <label for="tab2" class="tab-label">Projekty</label>
                 <label for="tab3" class="tab-label">Naprawy</label>
@@ -290,11 +313,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h3>Bezprzewodowy Węzeł IoT (ESP32)</h3>
-                        <p style="color: var(--text-muted)">Urządzenie pomiarowe zasilane bateryjnie z optymalizacją poboru prądu w trybie Deep Sleep.</p>
-                        
-                        <details>
-                            <summary>📐 Hardware & PCB</summary>
-                            <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
-                        </details>
-
-                        <details>
+                        <div class="tech-tags">
+                            <span class="tag">ESP32</span><span class="tag">KiCad</span><span class="tag">C</span><span class="tag">I2C</span><span class="tag">Low-Power</span>
+                        </div>
