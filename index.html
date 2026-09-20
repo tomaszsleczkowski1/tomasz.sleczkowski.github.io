@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inżynier Elektronik - Portfolio</title>
+    <title>Tomasz Ślęczkowski - Portfolio Inżynierskie</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -39,6 +39,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo {
@@ -53,7 +55,7 @@
             color: var(--text-main);
             font-size: 1rem;
             cursor: pointer;
-            margin-left: 1.5rem;
+            margin-left: 1rem;
             padding: 0.5rem 1rem;
             transition: color 0.3s;
         }
@@ -65,7 +67,7 @@
 
         main {
             max-width: 1100px;
-            margin: 100px auto 4rem auto;
+            margin: 120px auto 4rem auto;
             padding: 0 2rem;
         }
 
@@ -135,10 +137,11 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">Jan Kowalski // Electronics Engineer</div>
+            <div class="logo">Tomasz Ślęczkowski // Electronics Engineer</div>
             <nav>
                 <button onclick="openTab('o-mnie')" id="btn-o-mnie" class="active">O mnie</button>
                 <button onclick="openTab('projekty')" id="btn-projekty">Projekty</button>
+                <button onclick="openTab('naprawy')" id="btn-naprawy">Naprawy</button>
                 <button onclick="openTab('kontakt')" id="btn-kontakt">Kontakt</button>
             </nav>
         </div>
@@ -148,38 +151,42 @@
         <!-- ZAKŁADKA: O MNIE -->
         <div id="o-mnie" class="tab-content active">
             <div class="hero">
-                <h1>Cześć, projektuję elektronikę i systemy wbudowane</h1>
+                <h1>Cześć, nazywam się Tomasz Ślęczkowski</h1>
                 <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-                    Zajmuję się tworzeniem urządzeń od schematu ideowego, przez projekt PCB, aż po pisanie firmware dla mikrokontrolerów.
+                    Jestem inżynierem elektronikiem. Zajmuję się projektowaniem własnych urządzeń i systemów wbudowanych (Embedded) oraz zaawansowaną diagnostyką i naprawą sprzętu elektronicznego.
                 </p>
             </div>
-            <h2>Moje Stack Technologiczny</h2>
+            <h2>Mój Stack Technologiczny & Narzędzia</h2>
             <div class="grid">
                 <div class="card">
                     <h3>Hardware / EDA</h3>
-                    <p>KiCad, Altium Designer, Symulacje SPICE, Dobór komponentów SMPS.</p>
+                    <p>Projektowanie wielowarstwowych obwodów drukowanych, dobór komponentów, tworzenie schematów ideowych (np. KiCad, Altium Designer).</p>
                 </div>
                 <div class="card">
                     <h3>Firmware / Embedded</h3>
-                    <p>Język C/C++, STM32 (HAL), ESP32 (ESP-IDF), RTOS, komunikacja I2C/SPI/UART.</p>
+                    <p>Język C/C++, programowanie mikrokontrolerów (STM32, ESP32), znajomość protokołów komunikacyjnych (I2C, SPI, UART).</p>
+                </div>
+                <div class="card">
+                    <h3>Aparatura Laboratoryjna</h3>
+                    <p>Praca z oscyloskopem, analizatorem stanów logicznych, stacją lutowniczą (Lutowanie SMD/BGA) oraz zaawansowana diagnostyka usterek hardware'owych.</p>
                 </div>
             </div>
         </div>
 
         <!-- ZAKŁADKA: PROJEKTY -->
         <div id="projekty" class="tab-content">
-            <h2>Wybrane Projekty Inżynierskie</h2>
+            <h2>Projekty Własne i Konstruktorskie</h2>
+            <p style="color: var(--text-muted)">Moje autorskie układy elektroniczne stworzone od podstaw – od schematu, przez projekt PCB, do oprogramowania.</p>
             <div class="grid">
                 
                 <!-- PROJEKT 1 -->
                 <div class="card">
-                    <h3>1. Bezprzewodowy Węzeł IoT (ESP32)</h3>
+                    <h3>Bezprzewodowy Węzeł IoT (ESP32)</h3>
                     <p style="color: var(--text-muted)">Urządzenie pomiarowe zasilane bateryjnie z optymalizacją poboru prądu w trybie Deep Sleep.</p>
                     
                     <details>
                         <summary>📐 Hardware & PCB</summary>
                         <p>Zaprojektowano 2-warstwową płytkę w programie KiCad. Zastosowano regulator LDO o ultraniskim prądzie spoczynkowym (I_q = 1µA).</p>
-                        <p><i>[Tutaj możesz wstawić link do zdjęcia: &lt;img src="twoje_pcb.jpg"&gt;]</i></p>
                     </details>
 
                     <details>
@@ -192,7 +199,7 @@
 
                 <!-- PROJEKT 2 -->
                 <div class="card">
-                    <h3>2. Sterownik Silnika BLDC (STM32)</h3>
+                    <h3>Sterownik Silnika BLDC (STM32)</h3>
                     <p style="color: var(--text-muted)">Autorski moduł wykonawczy do precyzyjnego sterowania silnikiem bezszczotkowym.</p>
                     
                     <details>
@@ -211,31 +218,42 @@
             </div>
         </div>
 
-        <!-- ZAKŁADKA: KONTAKT -->
-        <div id="kontakt" class="tab-content">
-            <h2>Skontaktuj się ze mną</h2>
-            <div class="card" style="max-width: 500px; margin: 2rem 0;">
-                <p>Jestem otwarty na projekty rekrutacyjne oraz zlecenia freelancerskie.</p>
-                <p>📧 Email: <a href="mailto:twoj.email@example.com" style="color: var(--accent-color);">twoj.email@example.com</a></p>
-                <p>💼 LinkedIn: <a href="https://linkedin.com" style="color: var(--accent-color);">twój-profil</a></p>
+        <!-- ZAKŁADKA: NAPRAWY -->
+        <div id="naprawy" class="tab-content">
+            <h2>Serwis i Diagnostyka Elektroniki</h2>
+            <p style="color: var(--text-muted)">Przykłady udanych, zaawansowanych napraw urządzeń przemysłowych, konsumenckich lub automotive.</p>
+            <div class="grid">
+                
+                <!-- NAPRAWA 1 -->
+                <div class="card">
+                    <h3>Diagnostyka i naprawa przetwornicy impulsowej</h3>
+                    <p style="color: var(--text-muted)">Urządzenie: Zasilacz laboratoryjny dużej mocy.</p>
+                    <details>
+                        <summary>🔍 Opis usterki i lokalizacja</summary>
+                        <p>Brak napięcia na wyjściu. Po otwarciu obudowy i wstępnych pomiarach zidentyfikowano zwarcie w kluczu tranzystorowym MOSFET po stronie pierwotnej oraz uszkodzony kontroler PWM.</p>
+                    </details>
+                    <details>
+                        <summary>🛠️ Wykonane działania</summary>
+                        <p>Wymiana uszkodzonych elementów półprzewodnikowych, regeneracja przepalonych ścieżek oraz testy stabilności pod obciążeniem elektronicznym. Układ przywrócony do pełnej sprawności.</p>
+                    </details>
+                </div>
+
+                <!-- NAPRAWA 2 -->
+                <div class="card">
+                    <h3>Wymiana układu BGA w elektronice samochodowej</h3>
+                    <p style="color: var(--text-muted)">Urządzenie: Sterownik silnika ECU.</p>
+                    <details>
+                        <summary>🔍 Opis usterki i lokalizacja</summary>
+                        <p>Brak komunikacji ze sterownikiem przez magistralę CAN przy wyższych temperaturach. Diagnoza wskazała na zimne luty pod procesorem w obudowie BGA.</p>
+                    </details>
+                    <details>
+                        <summary>🛠️ Wykonane działania</summary>
+                        <p>Wykonano profesjonalny proces reballingu układu (wylutowanie, oczyszczenie padów, nałożenie nowych kulek ołowiowych i ponowne wlutowanie przy użyciu profilu temperatury).</p>
+                    </details>
+                </div>
+
             </div>
         </div>
-    </main>
 
-    <script>
-        function openTab(tabId) {
-            // Ukryj wszystkie zakładki
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            // Dezaktywuj wszystkie przyciski
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(button => button.classList.remove('active'));
-
-            // Pokaż wybraną zakładkę i aktywuj przycisk
-            document.getElementById(tabId).classList.add('active');
-            document.getElementById('btn-' + tabId).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+        <!-- ZAKŁADKA: KONTAKT -->
+        <div id="kontakt" class="tab-content">
