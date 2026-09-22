@@ -11,26 +11,13 @@
 
 ### Co zrobiłem?
 
-Podłączyłem DAC XYZ do ESP32.
-
-I2S działa.
-
-Na wyjściu mam dźwięk.
-
-Przy większej głośności pojawia się szum.
-
-Zasilanie DAC: 3.3 V.
-
-Zmierzony pobór: około X mA.
+Analiza architektury
+Znalazłem moduły ESP wśród swoich części elektronicznych.
 
 ### Kolejny krok
 
-Sprawdzić:
-
-* zasilanie,
-* masę,
-* zegar I2S,
-* czy szum pochodzi z DAC-a czy wzmacniacza.
+Analiza posiadanych ESP pod kątem wykonalności prototypu/produktu.
+Podłączenie ESP zamruganie diodą
 
 ### Zdjęcia
 
